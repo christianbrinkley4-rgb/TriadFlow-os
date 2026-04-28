@@ -38,7 +38,7 @@
         .header p { font-size: 14px; font-weight: 500; color: var(--accent); display: flex; align-items: center; justify-content: center; gap: 8px; }
 
         .progress-bar-container { width: 100%; background: #f1f5f9; height: 6px; }
-        .progress-bar { height: 100%; background: var(--accent); width: 12%; transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1); border-radius: 0 4px 4px 0; }
+        .progress-bar { height: 100%; background: var(--accent); width: 14%; transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1); border-radius: 0 4px 4px 0; }
 
         .step-indicator { text-align: center; font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; }
 
@@ -124,7 +124,7 @@
         <div class="progress-bar-container"><div class="progress-bar" id="progressBar"></div></div>
 
         <div class="step-container active" id="step-1">
-            <div class="step-indicator">Step 1 of 6</div>
+            <div class="step-indicator">Step 1 of 7</div>
             <h2>Let's establish your timeline.</h2>
             <p class="subtitle">What is your current age bracket? This helps us determine your upcoming transition windows.</p>
             <button class="option-btn" onclick="selectOption('age', 'Under 64', 2)">
@@ -139,7 +139,7 @@
         </div>
 
         <div class="step-container" id="step-2">
-            <div class="step-indicator">Step 2 of 6</div>
+            <div class="step-indicator">Step 2 of 7</div>
             <h2>Social Security Coordination</h2>
             <p class="subtitle">Are you planning to coordinate retirement or tax strategies with a spouse?</p>
             <button class="option-btn" onclick="selectOption('marital', 'Married', 3)">
@@ -151,7 +151,7 @@
         </div>
 
         <div class="step-container" id="step-3">
-            <div class="step-indicator">Step 3 of 6</div>
+            <div class="step-indicator">Step 3 of 7</div>
             <h2>Evaluate your portfolio.</h2>
             <p class="subtitle">What is your estimated household investable assets? (You can leave out the value of your primary home).</p>
             <button class="option-btn" onclick="selectOption('assets', 'Under $250k', 4)">
@@ -169,7 +169,7 @@
         </div>
 
         <div class="step-container" id="step-4">
-            <div class="step-indicator">Step 4 of 6</div>
+            <div class="step-indicator">Step 4 of 7</div>
             <h2>Determine your tax profile.</h2>
             <p class="subtitle">What is your estimated annual household income? This helps us check for local tax efficiencies.</p>
             <button class="option-btn" onclick="selectOption('income', 'Under $103k', 5)">
@@ -184,21 +184,33 @@
         </div>
 
         <div class="step-container" id="step-5">
-            <div class="step-indicator">Step 5 of 6</div>
-            <h2>What is most important to you?</h2>
-            <p class="subtitle">Select the goal that would give you the most peace of mind heading into 2026.</p>
-            <button class="option-btn" onclick="selectOption('goal', 'Tax Efficiency', 6)">
-                <i class="fa-solid fa-shield-halved"></i> Keeping my taxes as low as possible
+            <div class="step-indicator">Step 5 of 7</div>
+            <h2>Current Management Strategy.</h2>
+            <p class="subtitle">Are you currently working with a fiduciary financial advisor?</p>
+            <button class="option-btn" onclick="selectOption('advisor', 'Yes', 6)">
+                <i class="fa-solid fa-user-check"></i> Yes, I currently have an advisor
             </button>
-            <button class="option-btn" onclick="selectOption('goal', 'Market Protection', 6)">
-                <i class="fa-solid fa-umbrella"></i> Protecting my savings from market drops
-            </button>
-            <button class="option-btn" onclick="selectOption('goal', 'Income Optimization', 6)">
-                <i class="fa-solid fa-hand-holding-dollar"></i> Maximizing my monthly retirement income
+            <button class="option-btn" onclick="selectOption('advisor', 'No', 6)">
+                <i class="fa-solid fa-user-minus"></i> No, I manage my own accounts
             </button>
         </div>
 
         <div class="step-container" id="step-6">
+            <div class="step-indicator">Step 6 of 7</div>
+            <h2>What is most important to you?</h2>
+            <p class="subtitle">Select the goal that would give you the most peace of mind heading into 2026.</p>
+            <button class="option-btn" onclick="selectOption('goal', 'Tax Efficiency', 7)">
+                <i class="fa-solid fa-shield-halved"></i> Keeping my taxes as low as possible
+            </button>
+            <button class="option-btn" onclick="selectOption('goal', 'Market Protection', 7)">
+                <i class="fa-solid fa-umbrella"></i> Protecting my savings from market drops
+            </button>
+            <button class="option-btn" onclick="selectOption('goal', 'Income Optimization', 7)">
+                <i class="fa-solid fa-hand-holding-dollar"></i> Maximizing my monthly retirement income
+            </button>
+        </div>
+
+        <div class="step-container" id="step-7">
             <div class="step-indicator">Final Step</div>
             <h2>Where should we send your results?</h2>
             <p class="subtitle">Your customized 2026 Roadmap and local advisor match will be compiled immediately.</p>
@@ -227,7 +239,7 @@
             </button>
         </div>
 
-        <div class="step-container" id="step-7">
+        <div class="step-container" id="step-8">
             <div class="processing-state">
                 <div class="spinner"></div>
                 <h2 style="font-family: 'Inter', sans-serif; font-size: 22px;">Analyzing Your Profile...</h2>
@@ -235,7 +247,7 @@
             </div>
         </div>
 
-        <div class="step-container" id="step-8" style="padding-top: 25px;">
+        <div class="step-container" id="step-9" style="padding-top: 25px;">
             <div class="success-banner">
                 <p><i class="fa-solid fa-envelope-circle-check"></i> Your customized PDF guide is generating and will arrive in your inbox shortly.</p>
             </div>
@@ -300,7 +312,8 @@
     </div>
 
     <script>
-        const userData = { age: '', marital: '', assets: '', income: '', goal: '' };
+        // Data Payload Object (Now includes Advisor)
+        const userData = { age: '', marital: '', assets: '', income: '', advisor: '', goal: '' };
 
         // MODULE 1: UTM Tracking
         function captureUtmParamsOnLoad() {
@@ -321,9 +334,8 @@
                 const params = new URLSearchParams(window.location.search || "");
                 const rawCity = params.get("city");
 
-                if (!rawCity) return; // Keep default HTML
+                if (!rawCity) return;
 
-                // Decode and sanitize the city input
                 const normalized = rawCity.replace(/\+/g, " ").replace(/([a-z])([A-Z])/g, "$1 $2").trim();
                 const safeCity = normalized.replace(/[^a-zA-Z\s'-]/g, "").replace(/\s+/g, " ").trim();
 
@@ -345,7 +357,9 @@
             userData[category] = value; 
             document.querySelectorAll('.step-container').forEach(el => el.classList.remove('active'));
             document.getElementById('step-' + nextStepId).classList.add('active');
-            const progress = (nextStepId - 1) * 16.6; 
+            
+            // Adjust progress bar mathematical ratio for 7 UI steps
+            const progress = (nextStepId - 1) * 14.2; 
             document.getElementById('progressBar').style.width = progress + '%';
         }
 
@@ -364,7 +378,7 @@
 
         // MODULE 3: Webhook Failsafe Data Processing
         async function processData() {
-            // Build the payload WITH the extracted UTMs
+            // Build the payload WITH the new Advisor Field and UTMs
             const payload = {
                 name: document.getElementById('leadName').value,
                 email: document.getElementById('leadEmail').value,
@@ -373,6 +387,7 @@
                 marital: userData.marital,
                 assets: userData.assets,
                 income: userData.income,
+                advisor: userData.advisor,
                 goal: userData.goal,
                 timestamp: new Date().toISOString(),
                 utm_campaign: sessionStorage.getItem("utm_campaign") || "",
@@ -380,9 +395,9 @@
                 utm_medium: sessionStorage.getItem("utm_medium") || ""
             };
 
-            // Trigger UI loader
-            document.getElementById('step-6').classList.remove('active');
-            document.getElementById('step-7').classList.add('active');
+            // Trigger UI loader (Hide Step 7, Show Step 8)
+            document.getElementById('step-7').classList.remove('active');
+            document.getElementById('step-8').classList.add('active');
             document.getElementById('progressBar').style.width = '95%';
 
             // Zapier Webhook Call with Timeout Failsafe
@@ -390,6 +405,7 @@
             const timeoutId = setTimeout(() => controller.abort(), 5000);
 
             try {
+                // Zapier Webhook securely mapped
                 await fetch('https://hooks.zapier.com/hooks/catch/27406693/uv9ep9b/', {
                     method: "POST",
                     mode: "no-cors",
@@ -411,10 +427,10 @@
             setTimeout(() => { loadingText.innerText = "Customizing strategies based on your timeline..."; }, 1000);
             setTimeout(() => { loadingText.innerText = "Finding the best local advisor match..."; }, 2500);
 
-            // Move to Success & Match Screen
+            // Move to Success & Match Screen (Show Step 9)
             setTimeout(() => {
-                document.getElementById('step-7').classList.remove('active');
-                document.getElementById('step-8').classList.add('active');
+                document.getElementById('step-8').classList.remove('active');
+                document.getElementById('step-9').classList.add('active');
                 document.getElementById('progressBar').style.width = '100%';
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }, 4000);
