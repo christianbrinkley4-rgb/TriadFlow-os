@@ -312,8 +312,40 @@
     </div>
 
     <script>
-        // Data Payload Object (Now includes Advisor)
+        // Data Payload Object
         const userData = { age: '', marital: '', assets: '', income: '', advisor: '', goal: '' };
+
+        // MODULE 5: Lead Scoring Algorithm (From Codex)
+        function calculateLeadScore(userData) {
+            let points = 0;
+
+            const assets = (userData?.assets || "").toLowerCase().trim();
+            const advisor = (userData?.advisor || "").toLowerCase().trim();
+            const goal = (userData?.goal || "").toLowerCase().trim();
+
+            // Heavy asset weighting
+            if (assets.includes("$500k to $1m") || assets.includes("500k to 1m")) {
+                points += 6;
+            } else if (assets.includes("over $1m") || assets.includes("over 1m")) {
+                points += 8;
+            }
+
+            // Positive: no current advisor
+            if (advisor === "no") {
+                points += 2;
+            }
+
+            // Positive: high-intent goals
+            if (goal === "tax efficiency") {
+                points += 2;
+            } else if (goal === "market protection") {
+                points += 2;
+            }
+
+            if (points >= 8) return "Tier A (High Priority)";
+            if (points >= 4) return "Tier B (Standard)";
+            return "Tier C (Long-Term Nurture)";
+        }
 
         // MODULE 1: UTM Tracking
         function captureUtmParamsOnLoad() {
@@ -358,7 +390,6 @@
             document.querySelectorAll('.step-container').forEach(el => el.classList.remove('active'));
             document.getElementById('step-' + nextStepId).classList.add('active');
             
-            // Adjust progress bar mathematical ratio for 7 UI steps
             const progress = (nextStepId - 1) * 14.2; 
             document.getElementById('progressBar').style.width = progress + '%';
         }
@@ -378,7 +409,7 @@
 
         // MODULE 3: Webhook Failsafe Data Processing
         async function processData() {
-            // Build the payload WITH the new Advisor Field and UTMs
+            // Build the payload WITH the new Lead Scoring and UTMs
             const payload = {
                 name: document.getElementById('leadName').value,
                 email: document.getElementById('leadEmail').value,
@@ -389,6 +420,7 @@
                 income: userData.income,
                 advisor: userData.advisor,
                 goal: userData.goal,
+                lead_tier: calculateLeadScore(userData), // The new algorithm injection
                 timestamp: new Date().toISOString(),
                 utm_campaign: sessionStorage.getItem("utm_campaign") || "",
                 utm_source: sessionStorage.getItem("utm_source") || "",
@@ -405,7 +437,6 @@
             const timeoutId = setTimeout(() => controller.abort(), 5000);
 
             try {
-                // Zapier Webhook securely mapped
                 await fetch('https://hooks.zapier.com/hooks/catch/27406693/uv9ep9b/', {
                     method: "POST",
                     mode: "no-cors",
@@ -414,7 +445,6 @@
                     signal: controller.signal
                 });
             } catch (error) {
-                // If connection drops, alert user to call office
                 document.querySelector('.spinner').style.display = "none";
                 alert("Secure connection timeout. Please call our office directly to receive your roadmap.");
                 return;
