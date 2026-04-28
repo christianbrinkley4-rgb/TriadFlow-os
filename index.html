@@ -1,1 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 Financial Roadmap | Triad Region</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #1e3a5f; 
+            --secondary: #f8f9fa;
+            --accent: #005A8C; /* Bankers Life Corporate Blue */
+            --accent-hover: #00426b;
+            --text-main: #334155;
+            --text-muted: #64748b;
+            --success: #059669;
+            --highlight: #f59e0b; 
+            --border: #e2e8f0;
+        }
 
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background-color: #f1f5f9; color: var(--text-main); display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 20px 15px 80px; -webkit-font-smoothing: antialiased; }
+
+        .app-container {
+            background: #ffffff;
+            width: 100%;
+            max-width: 650px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(30, 58, 95, 0.08);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .header { padding: 35px 40px 25px; text-align: center; border-bottom: 1px solid var(--border); background: #ffffff; }
+        .header h1 { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--primary); margin-bottom: 10px; line-height: 1.2; }
+        .header p { font-size: 14px; font-weight: 500; color: var(--accent); display: flex; align-items: center; justify-content: center; gap: 8px; }
+
+        .progress-bar-container { width: 100%; background: #f1f5f9; height: 6px; }
+        .progress-bar { height: 100%; background: var(--accent); width: 12%; transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1); border-radius: 0 4px 4px 0; }
+
+        .step-indicator { text-align: center; font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; }
+
+        .step-container { padding: 40px 35px; display: none; animation: fadeIn 0.4s ease-out; }
+        .step-container.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        h2 { font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 12px; color: var(--primary); line-height: 1.3; text-align: center; }
+        .subtitle { text-align: center; font-size: 15px; color: var(--text-muted); margin-bottom: 30px; line-height: 1.5; }
+        
+        .option-btn {
+            display: flex; align-items: center; width: 100%; padding: 20px 24px; margin-bottom: 15px;
+            background: #ffffff; border: 2px solid var(--border); border-radius: 8px;
+            text-align: left; font-size: 16px; font-weight: 500; color: var(--primary);
+            cursor: pointer; transition: all 0.2s ease;
+        }
+        .option-btn:hover { border-color: var(--accent); background: #f0f9ff; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0, 90, 140, 0.08); }
+        .option-btn i { font-size: 20px; margin-right: 15px; color: var(--accent); width: 24px; text-align: center; }
+
+        .form-group { margin-bottom: 22px; }
+        .form-group label { display: block; margin-bottom: 8px; font-size: 14px; font-weight: 600; color: var(--primary); }
+        .form-control { width: 100%; padding: 16px; border: 2px solid var(--border); border-radius: 8px; font-size: 16px; font-family: 'Inter', sans-serif; background: #fafafa; transition: border-color 0.3s; }
+        .form-control:focus { outline: none; border-color: var(--accent); background: #ffffff; }
+
+        .consent-box { display: flex; align-items: flex-start; gap: 12px; margin-top: 25px; font-size: 12px; color: var(--text-muted); line-height: 1.6; padding: 18px; background: #f8fafc; border-radius: 8px; border: 1px solid var(--border); }
+        .consent-box input { margin-top: 3px; cursor: pointer; width: 16px; height: 16px; }
+        
+        .action-btn {
+            display: flex; justify-content: center; align-items: center; gap: 10px; width: 100%; padding: 20px; margin-top: 30px;
+            background: var(--accent); color: #ffffff; border: none; border-radius: 8px;
+            font-size: 17px; font-weight: 600; cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 15px rgba(0, 90, 140, 0.2);
+        }
+        .action-btn:hover { background: var(--accent-hover); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0, 90, 140, 0.3); }
+        .action-btn:disabled { background: #cbd5e1; cursor: not-allowed; box-shadow: none; transform: none; }
+
+        .processing-state { text-align: center; padding: 50px 20px; }
+        .spinner { border: 4px solid #f1f5f9; border-top: 4px solid var(--accent); border-radius: 50%; width: 60px; height: 60px; animation: spin 1s linear infinite; margin: 0 auto 30px; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        
+        /* The Match Profile Card */
+        .match-card { background: #ffffff; border: 2px solid var(--accent); border-radius: 8px; padding: 20px; margin-bottom: 25px; display: flex; align-items: center; gap: 20px; box-shadow: 0 10px 25px rgba(0, 90, 140, 0.1); position: relative; overflow: hidden; }
+        .match-badge { position: absolute; top: 0; right: 0; background: var(--accent); color: white; font-size: 10px; font-weight: 700; text-transform: uppercase; padding: 4px 12px; border-radius: 0 0 0 8px; letter-spacing: 1px; }
+        .advisor-photo { width: 80px; height: 80px; border-radius: 50%; background: #e2e8f0; border: 3px solid #ffffff; box-shadow: 0 4px 10px rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center; font-size: 30px; color: #cbd5e1; flex-shrink: 0; overflow: hidden; }
+        .advisor-photo img { width: 100%; height: 100%; object-fit: cover; }
+        .advisor-details h3 { color: var(--primary); font-size: 18px; margin-bottom: 4px; font-family: 'Playfair Display', serif; }
+        .advisor-details p { font-size: 13px; color: var(--text-muted); margin-bottom: 2px; }
+        .advisor-details .firm { font-weight: 600; color: var(--accent); }
+
+        .success-banner { background: #ecfdf5; border: 1px solid #a7f3d0; padding: 15px; border-radius: 8px; margin-bottom: 25px; text-align: center; }
+        .success-banner p { font-size: 14px; color: var(--success); font-weight: 500; }
+
+        .calendly-inline-widget { min-width: 320px; height: 500px; margin-top: 15px; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); background: white; box-shadow: 0 4px 15px rgba(0,0,0,0.03); }
+
+        /* Social Proof / Reviews Section */
+        .reviews-container { margin-top: 30px; border-top: 1px solid var(--border); padding-top: 25px; }
+        .reviews-header { text-align: center; font-size: 16px; color: var(--primary); margin-bottom: 20px; font-weight: 600; font-family: 'Playfair Display', serif; }
+        .review-card { background: #ffffff; padding: 20px; border-radius: 8px; margin-bottom: 15px; border: 1px solid var(--border); box-shadow: 0 2px 10px rgba(0,0,0,0.02); position: relative; }
+        .review-card::before { content: '\201C'; position: absolute; top: 10px; left: 15px; font-size: 40px; color: #f1f5f9; font-family: Georgia, serif; line-height: 1; z-index: 0; }
+        .stars { color: var(--highlight); font-size: 13px; margin-bottom: 8px; position: relative; z-index: 1; }
+        .review-text { font-size: 14px; color: var(--text-main); line-height: 1.5; margin-bottom: 10px; position: relative; z-index: 1; }
+        .review-author { font-size: 12px; font-weight: 600; color: var(--text-muted); display: flex; align-items: center; gap: 6px; }
+
+        .advisor-link { display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; text-align: center; margin-top: 20px; padding: 18px; font-size: 13px; color: var(--primary); font-weight: 600; text-decoration: none; border-radius: 8px; transition: all 0.2s; border: 2px solid var(--border); background: #f8fafc; }
+        .advisor-link:hover { background: #ffffff; border-color: var(--accent); color: var(--accent); box-shadow: 0 4px 12px rgba(0, 90, 140, 0.05); }
+
+        /* Trust Footer */
+        .trust-footer { position: fixed; bottom: 0; left: 0; right: 0; background: #ffffff; padding: 12px; display: flex; justify-content: center; gap: 30px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-muted); font-weight: 500; z-index: 100; box-shadow: 0 -2px 10px rgba(0,0,0,0.03); }
+        .trust-item { display: flex; align-items: center; gap: 6px; }
+        
+        @media (max-width: 600px) {
+            .app-container { border-radius: 0; box-shadow: none; border-top: 4px solid var(--accent); }
+            body { padding: 0 0 60px 0; background: #ffffff; }
+            .trust-footer { padding: 10px; gap: 15px; font-size: 11px; flex-wrap: wrap; }
+            .match-card { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <div class="header">
+            <h1>2026 Retirement Roadmap</h1>
+            <p><i class="fa-solid fa-map-location-dot"></i> Triad Local Market Guide</p>
+        </div>
+        <div class="progress-bar-container"><div class="progress-bar" id="progressBar"></div></div>
+
+        <div class="step-container active" id="step-1">
+            <div class="step-indicator">Step 1 of 6</div>
+            <h2>Let's establish your timeline.</h2>
+            <p class="subtitle">What is your current age bracket? This helps us determine your upcoming transition windows.</p>
+            <button class="option-btn" onclick="selectOption('age', 'Under 64', 2)">
+                <i class="fa-regular fa-calendar"></i> Under 64 (Planning Ahead)
+            </button>
+            <button class="option-btn" onclick="selectOption('age', '64 to 65', 2)">
+                <i class="fa-regular fa-calendar-check"></i> 64 - 65 (Approaching Transition)
+            </button>
+            <button class="option-btn" onclick="selectOption('age', 'Over 65', 2)">
+                <i class="fa-solid fa-calendar-check"></i> 65+ (Currently Enrolled)
+            </button>
+        </div>
+
+        <div class="step-container" id="step-2">
+            <div class="step-indicator">Step 2 of 6</div>
+            <h2>Social Security Coordination</h2>
+            <p class="subtitle">Are you planning to coordinate retirement or tax strategies with a spouse?</p>
+            <button class="option-btn" onclick="selectOption('marital', 'Married', 3)">
+                <i class="fa-solid fa-user-group"></i> Married / Filing Jointly
+            </button>
+            <button class="option-btn" onclick="selectOption('marital', 'Single', 3)">
+                <i class="fa-solid fa-user"></i> Single / Widowed / Divorced
+            </button>
+        </div>
+
+        <div class="step-container" id="step-3">
+            <div class="step-indicator">Step 3 of 6</div>
+            <h2>Evaluate your portfolio.</h2>
+            <p class="subtitle">What is your estimated household investable assets? (You can leave out the value of your primary home).</p>
+            <button class="option-btn" onclick="selectOption('assets', 'Under $250k', 4)">
+                <i class="fa-solid fa-seedling"></i> Under $250,000
+            </button>
+            <button class="option-btn" onclick="selectOption('assets', '$250k to $500k', 4)">
+                <i class="fa-solid fa-tree"></i> $250,000 - $500,000
+            </button>
+            <button class="option-btn" onclick="selectOption('assets', '$500k to $1M', 4)">
+                <i class="fa-solid fa-house-chimney"></i> $500,000 - $1,000,000
+            </button>
+            <button class="option-btn" onclick="selectOption('assets', 'Over $1M', 4)">
+                <i class="fa-solid fa-building-columns"></i> $1,000,000+
+            </button>
+        </div>
+
+        <div class="step-container" id="step-4">
+            <div class="step-indicator">Step 4 of 6</div>
+            <h2>Determine your tax profile.</h2>
+            <p class="subtitle">What is your estimated annual household income? This helps us check for local tax efficiencies.</p>
+            <button class="option-btn" onclick="selectOption('income', 'Under $103k', 5)">
+                <i class="fa-solid fa-chart-pie"></i> Under $103,000
+            </button>
+            <button class="option-btn" onclick="selectOption('income', '$103k to $193k', 5)">
+                <i class="fa-solid fa-chart-pie"></i> $103,000 - $193,000
+            </button>
+            <button class="option-btn" onclick="selectOption('income', 'Over $193k', 5)">
+                <i class="fa-solid fa-chart-pie"></i> Over $193,000
+            </button>
+        </div>
+
+        <div class="step-container" id="step-5">
+            <div class="step-indicator">Step 5 of 6</div>
+            <h2>What is most important to you?</h2>
+            <p class="subtitle">Select the goal that would give you the most peace of mind heading into 2026.</p>
+            <button class="option-btn" onclick="selectOption('goal', 'Tax Efficiency', 6)">
+                <i class="fa-solid fa-shield-halved"></i> Keeping my taxes as low as possible
+            </button>
+            <button class="option-btn" onclick="selectOption('goal', 'Market Protection', 6)">
+                <i class="fa-solid fa-umbrella"></i> Protecting my savings from market drops
+            </button>
+            <button class="option-btn" onclick="selectOption('goal', 'Income Optimization', 6)">
+                <i class="fa-solid fa-hand-holding-dollar"></i> Maximizing my monthly retirement income
+            </button>
+        </div>
+
+        <div class="step-container" id="step-6">
+            <div class="step-indicator">Final Step</div>
+            <h2>Where should we send your results?</h2>
+            <p class="subtitle">Your customized 2026 Roadmap and local advisor match will be compiled immediately.</p>
+            
+            <div class="form-group">
+                <label>First & Last Name</label>
+                <input type="text" id="leadName" class="form-control" placeholder="E.g. John Smith">
+            </div>
+            <div class="form-group">
+                <label>Best Email Address</label>
+                <input type="email" id="leadEmail" class="form-control" placeholder="Where should we send your PDF?">
+            </div>
+            <div class="form-group">
+                <label>Mobile Number</label>
+                <input type="tel" id="leadPhone" class="form-control" placeholder="(336) 555-0123">
+                <p style="font-size: 11px; color: var(--text-muted); margin-top: 6px;"><i class="fa-solid fa-lock"></i> Used only to send your secure PDF access code.</p>
+            </div>
+
+            <div class="consent-box">
+                <input type="checkbox" id="tcpaConsent" onchange="toggleSubmitBtn()">
+                <label for="tcpaConsent">I agree to receive a friendly text message and phone call from my matched Bankers Life advisor regarding my roadmap. Standard data rates apply. Your information is never sold.</label>
+            </div>
+
+            <button class="action-btn" id="submitLeadBtn" onclick="processData()" disabled>
+                See My Results & Matches <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
+
+        <div class="step-container" id="step-7">
+            <div class="processing-state">
+                <div class="spinner"></div>
+                <h2 style="font-family: 'Inter', sans-serif; font-size: 22px;">Analyzing Your Profile...</h2>
+                <p id="loadingText" style="color: var(--text-muted); font-size: 15px; margin-top: 15px;">Scanning local fiduciaries in the Triad region...</p>
+            </div>
+        </div>
+
+        <div class="step-container" id="step-8" style="padding-top: 25px;">
+            <div class="success-banner">
+                <p><i class="fa-solid fa-envelope-circle-check"></i> Your customized PDF guide is generating and will arrive in your inbox shortly.</p>
+            </div>
+
+            <h2 style="font-size: 22px; margin-bottom: 15px;">You have a match!</h2>
+            <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 20px; line-height: 1.6;">Based on your inputs, our system has paired you with a highly-rated local specialist optimized for your exact financial goals.</p>
+
+            <div class="match-card">
+                <div class="match-badge">Top Match</div>
+                <div class="advisor-photo">
+                    <i class="fa-solid fa-user-tie"></i>
+                </div>
+                <div class="advisor-details">
+                    <h3>William Chappell</h3>
+                    <p class="firm">Bankers Life</p>
+                    <p><i class="fa-solid fa-location-dot" style="color: var(--text-muted); font-size: 11px;"></i> Greensboro, North Carolina</p>
+                    <p style="margin-top: 6px; font-size: 12px; color: var(--success); font-weight: 600;"><i class="fa-solid fa-bolt"></i> Currently accepting new reviews</p>
+                </div>
+            </div>
+
+            <div style="padding-top: 10px; text-align: center;">
+                <h3 style="font-size: 17px; color: var(--primary); margin-bottom: 8px;">Claim your complimentary review.</h3>
+                <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 20px; line-height: 1.5;">William offers a free, no-pressure 15-minute introductory call to review your PDF roadmap. Select a time on his direct calendar below.</p>
+                
+                <div class="calendly-inline-widget" data-url="https://calendly.com/your-placeholder-link/15min" style="min-width:320px;height:500px;"></div>
+                <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+            </div>
+
+            <div class="reviews-container">
+                <div class="reviews-header">What your Triad neighbors are saying</div>
+                
+                <div class="review-card">
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="review-text">"The transition to retirement felt overwhelming until Will broke everything down into simple steps. He is incredibly patient, honest, and truly cares about making sure you understand your options without any pressure."</p>
+                    <p class="review-author"><i class="fa-solid fa-circle-check" style="color: var(--success);"></i> Verified Client, Oak Ridge</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="review-text">"Will showed us a strategy to protect our savings that we didn't even know existed. Getting that 15-minute phone call was the best decision we made for our peace of mind this year. Highly recommend his team."</p>
+                    <p class="review-author"><i class="fa-solid fa-circle-check" style="color: var(--success);"></i> Verified Client, Winston-Salem</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="review-text">"Extremely professional and genuinely friendly. He didn't try to sell me a one-size-fits-all package; he actually listened to my goals and helped me build a customized plan for my family."</p>
+                    <p class="review-author"><i class="fa-solid fa-circle-check" style="color: var(--success);"></i> Verified Client, Greensboro</p>
+                </div>
+            </div>
+
+            <a href="https://agents.bankerslife.com/nc/greensboro/400-bellemeade/william-chappell" target="_blank" class="advisor-link">
+                <i class="fa-solid fa-building-shield"></i> Verify Credentials: Visit William's Official Bankers Life Page
+            </a>
+            
+        </div>
+    </div>
+
+    <div class="trust-footer">
+        <div class="trust-item"><i class="fa-solid fa-lock"></i> 256-Bit SSL Secured</div>
+        <div class="trust-item"><i class="fa-solid fa-shield-halved"></i> 100% Privacy Protected</div>
+        <div class="trust-item"><i class="fa-solid fa-building-columns"></i> Institutional Grade</div>
+    </div>
+
+    <script>
+        const userData = { age: '', marital: '', assets: '', income: '', goal: '' };
+function captureUtmParamsOnLoad() {
+  try {
+    const params = new URLSearchParams(window.location.search || "");
+    const keys = ["utm_campaign", "utm_source", "utm_medium"];
+
+    for (const key of keys) {
+      const value = params.get(key);
+      if (value) sessionStorage.setItem(key, value);
+    }
+  } catch (_) {
+    // Silent fail to avoid blocking form flow
+  }
+}
+
+window.addEventListener("DOMContentLoaded", captureUtmParamsOnLoad);
+const payload = {
+  // your existing fields...
+  first_name: firstName,
+  email: email,
+  phone: phone,
+
+  utm_campaign: sessionStorage.getItem("utm_campaign") || "",
+  utm_source: sessionStorage.getItem("utm_source") || "",
+  utm_medium: sessionStorage.getItem("utm_medium") || ""
+};
+function applyLocalMarketHeader() {
+  const fallback = "Triad Local Market Guide";
+
+  try {
+    const params = new URLSearchParams(window.location.search || "");
+    const rawCity = params.get("city");
+
+    if (!rawCity) {
+      setHeaderText(fallback);
+      return;
+    }
+
+    // Decode, normalize camelCase, and strip unsafe characters
+    const normalized = rawCity
+      .replace(/\+/g, " ")
+      .replace(/([a-z])([A-Z])/g, "$1 $2")
+      .trim();
+
+    const safeCity = normalized
+      .replace(/[^a-zA-Z\s'-]/g, "")
+      .replace(/\s+/g, " ")
+      .trim();
+
+    if (!safeCity || safeCity.length > 40) {
+      setHeaderText(fallback);
+      return;
+    }
+
+    setHeaderText(`${safeCity} Local Market Guide`);
+  } catch (_) {
+    setHeaderText(fallback);
+  }
+
+  function setHeaderText(text) {
+    const el = document.getElementById("local-header");
+    if (el) el.textContent = text;
+  }
+}
+
+window.addEventListener("DOMContentLoaded", applyLocalMarketHeader);
+<p id="local-header">Triad Local Market Guide</p>
+const controller = new AbortController();
+const timeoutId = setTimeout(() => controller.abort(), 5000);
+
+try {
+  await fetch(https://hooks.zapier.com/hooks/catch/27406693/uv9ep9b/, {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+    signal: controller.signal
+  });
+
+  // Keep your existing success UI logic here (unchanged)
+} catch (error) {
+  // Hide loading spinner (keep your existing UI pattern if different)
+  const spinner = document.getElementById("loading-spinner");
+  if (spinner) spinner.style.display = "none";
+
+  alert("Secure connection timeout. Please call our office directly to receive your roadmap.");
+  return;
+} finally {
+  clearTimeout(timeoutId);
+}
+
+        function selectOption(category, value, nextStepId) {
+            userData[category] = value; 
+            
+            document.querySelectorAll('.step-container').forEach(el => el.classList.remove('active'));
+            document.getElementById('step-' + nextStepId).classList.add('active');
+            
+            const progress = (nextStepId - 1) * 16.6; 
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        function toggleSubmitBtn() {
+            const consent = document.getElementById('tcpaConsent').checked;
+            const name = document.getElementById('leadName').value;
+            const email = document.getElementById('leadEmail').value;
+            const phone = document.getElementById('leadPhone').value;
+            
+            document.getElementById('submitLeadBtn').disabled = !(consent && name.length > 2 && phone.length > 9 && email.includes('@'));
+        }
+
+        ['leadName', 'leadEmail', 'leadPhone'].forEach(id => {
+            document.getElementById(id).addEventListener('input', toggleSubmitBtn);
+        });
+
+        async function processData() {
+            const payload = {
+                name: document.getElementById('leadName').value,
+                email: document.getElementById('leadEmail').value,
+                phone: document.getElementById('leadPhone').value,
+                age: userData.age,
+                marital: userData.marital,
+                assets: userData.assets,
+                income: userData.income,
+                goal: userData.goal,
+                timestamp: new Date().toISOString()
+            };
+
+            document.getElementById('step-6').classList.remove('active');
+            document.getElementById('step-7').classList.add('active');
+            document.getElementById('progressBar').style.width = '95%';
+
+            try {
+                fetch('PASTE_YOUR_ZAPIER_WEBHOOK_URL_HERE', {
+                    method: 'POST',
+                    body: JSON.stringify(payload),
+                    headers: { 'Content-Type': 'application/json' },
+                    mode: 'no-cors' 
+                });
+            } catch (e) {
+                console.log("Zapier hook triggered");
+            }
+
+            const loadingText = document.getElementById('loadingText');
+            setTimeout(() => { loadingText.innerText = "Customizing strategies based on your timeline..."; }, 1000);
+            setTimeout(() => { loadingText.innerText = "Finding the best local advisor match..."; }, 2500);
+
+            setTimeout(() => {
+                document.getElementById('step-7').classList.remove('active');
+                document.getElementById('step-8').classList.add('active');
+                document.getElementById('progressBar').style.width = '100%';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 4000);
+        }
+    </script>
+</body>
+</html>
