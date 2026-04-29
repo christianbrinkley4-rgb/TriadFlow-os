@@ -1,303 +1,475 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2026 Financial & Tax Transition Roadmap</title>
-    
-    <script>
-      !function(f,b,e,v,n,t,s)
-      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window, document,'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', 'YOUR_PIXEL_ID');
-      fbq('track', 'PageView');
-    </script>
-    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"/></noscript>
-    
-    <style>
-        /* 65+ Demographic Optimized CSS */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f7f6;
-            color: #333;
-            line-height: 1.6;
-            font-size: 18px; 
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-        .funnel-container {
-            background: #fff;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            max-width: 600px;
-            width: 100%;
-            text-align: center;
-        }
-        h1 { font-size: 28px; margin-bottom: 10px; color: #1a365d; }
-        .trust-strip { font-size: 15px; font-weight: bold; color: #2b6cb0; margin-bottom: 30px; }
-        .form-step { display: none; }
-        .form-step.active { display: block; animation: fadeIn 0.4s; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        
-        .step-indicator { font-size: 14px; color: #718096; margin-bottom: 20px; font-weight: bold; }
-        label { display: block; margin-bottom: 10px; font-weight: bold; text-align: left; }
-        input, select {
-            width: 100%; padding: 15px; margin-bottom: 20px; 
-            border: 2px solid #cbd5e0; border-radius: 6px; 
-            font-size: 18px; box-sizing: border-box;
-        }
-        .disclaimer { font-size: 14px; font-style: italic; color: #718096; text-align: left; margin-top: -15px; margin-bottom: 20px; }
-        .contact-disclaimer { font-size: 13px; color: #4a5568; text-align: left; margin-bottom: 15px; padding: 10px; background: #edf2f7; border-radius: 6px; }
-        
-        .next-btn, #submitLeadBtn {
-            background-color: #2b6cb0; color: white; border: none;
-            padding: 18px 24px; font-size: 20px; font-weight: bold;
-            border-radius: 6px; cursor: pointer; width: 100%;
-            transition: background 0.3s;
-            min-height: 56px; 
-        }
-        .next-btn:hover, #submitLeadBtn:hover { background-color: #1a365d; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2026 Financial & Tax Transition Roadmap</title>
+
+  <!-- Meta Pixel Base Code -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'YOUR_PIXEL_ID');
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1" />
+  </noscript>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f7f6;
+      color: #333;
+      line-height: 1.6;
+      font-size: 18px;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .funnel-container {
+      background: #fff;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      width: 100%;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 30px;
+      margin-bottom: 10px;
+      color: #1a365d;
+    }
+
+    .trust-strip {
+      font-size: 16px;
+      font-weight: 700;
+      color: #2b6cb0;
+      margin-bottom: 30px;
+    }
+
+    .form-step {
+      display: none;
+    }
+
+    .form-step.active {
+      display: block;
+      animation: fadeIn 0.35s;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .step-indicator {
+      font-size: 15px;
+      color: #4a5568;
+      margin-bottom: 18px;
+      font-weight: 700;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: 700;
+      text-align: left;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 18px;
+      border: 2px solid #cbd5e0;
+      border-radius: 6px;
+      font-size: 18px;
+      box-sizing: border-box;
+    }
+
+    .disclaimer {
+      font-size: 15px;
+      font-style: italic;
+      color: #4a5568;
+      text-align: left;
+      margin-top: -10px;
+      margin-bottom: 16px;
+    }
+
+    .contact-disclaimer {
+      font-size: 16px;
+      color: #2d3748;
+      text-align: left;
+      margin-bottom: 15px;
+      padding: 12px;
+      background: #edf2f7;
+      border-radius: 6px;
+    }
+
+    .error-text {
+      color: #b00020;
+      font-size: 15px;
+      text-align: left;
+      margin-top: -10px;
+      margin-bottom: 12px;
+      min-height: 22px;
+    }
+
+    #zipVerified {
+      color: #1f6f43;
+      font-weight: 700;
+      font-size: 15px;
+      margin-top: -4px;
+      margin-bottom: 14px;
+      text-align: left;
+      display: none;
+    }
+
+    .next-btn, #submitLeadBtn {
+      background-color: #2b6cb0;
+      color: #fff;
+      border: none;
+      padding: 18px 24px;
+      font-size: 20px;
+      font-weight: 700;
+      border-radius: 6px;
+      cursor: pointer;
+      width: 100%;
+      min-height: 56px;
+      transition: background 0.2s ease;
+    }
+
+    .next-btn:hover, #submitLeadBtn:hover {
+      background-color: #1a365d;
+    }
+
+    .next-btn:disabled, #submitLeadBtn:disabled {
+      background-color: #9aa9bd;
+      cursor: not-allowed;
+    }
+
+    .next-btn:focus-visible, #submitLeadBtn:focus-visible, input:focus-visible, select:focus-visible {
+      outline: 3px solid #90cdf4;
+      outline-offset: 2px;
+    }
+  </style>
 </head>
 <body>
-
-<div class="funnel-container">
+  <div class="funnel-container">
     <h1>2026 Financial & Tax Transition Roadmap</h1>
-    <p class="trust-strip">🔒 Encrypted • Never Sold • Reviewed by a Local Fiduciary</p>
+    <p class="trust-strip">Encrypted • Never Sold • Reviewed by a Local Fiduciary</p>
 
-    <form id="triadFlowForm" action="https://hooks.zapier.com/hooks/catch/27406693/uv9ep9b/" method="POST">
-        
-        <div class="form-step active" id="step-0">
-            <p class="step-indicator">Step 1 of 7</p>
-            <label for="Zip">Enter your Triad Area ZIP Code to verify eligibility:</label>
-            <input type="text" id="Zip" name="Zip" placeholder="e.g. 27401" required>
-            <button type="button" class="next-btn">Continue</button>
-        </div>
+    <form id="triadFlowForm" action="https://hooks.zapier.com/hooks/catch/27406693/uv9ep9b/" method="POST" novalidate>
+      <div class="form-step active" id="step-0">
+        <p class="step-indicator">Step 1 of 7</p>
+        <label for="Zip">Enter your Triad Area ZIP Code to verify eligibility:</label>
+        <input
+          type="text"
+          id="Zip"
+          name="Zip"
+          placeholder="e.g. 27401"
+          inputmode="numeric"
+          maxlength="5"
+          pattern="\\d{5}"
+          title="Please enter a 5-digit ZIP code."
+          required
+        />
+        <p id="zipFeedback" class="error-text"></p>
+        <p id="zipVerified">Local Verification Confirmed</p>
+        <button type="button" class="next-btn" id="zipContinueBtn" disabled>Continue</button>
+      </div>
 
-        <div class="form-step" id="step-1">
-            <p class="step-indicator">Step 2 of 7</p>
-            <label for="Age">What is your current age range?</label>
-            <select id="Age" name="Age">
-                <option value="Under 60">Under 60</option>
-                <option value="60 to 63">60 to 63</option>
-                <option value="64 to 65">64 to 65</option>
-                <option value="66 to 70">66 to 70</option>
-                <option value="Over 70">Over 70</option>
-            </select>
-            <button type="button" class="next-btn">Continue</button>
-        </div>
+      <div class="form-step" id="step-1">
+        <p class="step-indicator">Step 2 of 7</p>
+        <label for="Age">What is your current age range?</label>
+        <select id="Age" name="Age" required>
+          <option value="" selected disabled>Select one</option>
+          <option value="Under 60">Under 60</option>
+          <option value="60 to 63">60 to 63</option>
+          <option value="64 to 65">64 to 65</option>
+          <option value="66 to 70">66 to 70</option>
+          <option value="Over 70">Over 70</option>
+        </select>
+        <button type="button" class="next-btn">Continue</button>
+      </div>
 
-        <div class="form-step" id="step-2">
-            <p class="step-indicator">Step 3 of 7</p>
-            <label for="Marital">What is your marital status?</label>
-            <select id="Marital" name="Marital">
-                <option value="Married">Married</option>
-                <option value="Single">Single</option>
-                <option value="Widowed">Widowed</option>
-                <option value="Divorced">Divorced</option>
-            </select>
-            <button type="button" class="next-btn">Continue</button>
-        </div>
+      <div class="form-step" id="step-2">
+        <p class="step-indicator">Step 3 of 7</p>
+        <label for="Marital">What is your marital status?</label>
+        <select id="Marital" name="Marital" required>
+          <option value="" selected disabled>Select one</option>
+          <option value="Married">Married</option>
+          <option value="Single">Single</option>
+          <option value="Widowed">Widowed</option>
+          <option value="Divorced">Divorced</option>
+        </select>
+        <button type="button" class="next-btn">Continue</button>
+      </div>
 
-        <div class="form-step" id="step-3">
-            <p class="step-indicator">Step 4 of 7</p>
-            <label for="Goal">What is your primary financial focus right now?</label>
-            <select id="Goal" name="Goal">
-                <option value="Tax Efficiency">Tax Efficiency & Avoiding Drag</option>
-                <option value="Market Protection">Market Protection & Risk Control</option>
-                <option value="Income Optimization">Income Optimization & Distribution</option>
-            </select>
-            <button type="button" class="next-btn">Continue</button>
-        </div>
+      <div class="form-step" id="step-3">
+        <p class="step-indicator">Step 4 of 7</p>
+        <label for="Goal">What is your primary financial focus right now?</label>
+        <select id="Goal" name="Goal" required>
+          <option value="" selected disabled>Select one</option>
+          <option value="Tax Efficiency">Tax Efficiency &amp; Avoiding Drag</option>
+          <option value="Market Protection">Market Protection &amp; Risk Control</option>
+          <option value="Income Optimization">Income Optimization &amp; Distribution</option>
+        </select>
+        <button type="button" class="next-btn">Continue</button>
+      </div>
 
-        <div class="form-step" id="step-4">
-            <p class="step-indicator">Step 5 of 7</p>
-            <label for="Advisor">Do you currently work with a financial advisor?</label>
-            <select id="Advisor" name="Advisor">
-                <option value="Yes">Yes, I currently have an advisor</option>
-                <option value="No">No, I manage it myself</option>
-            </select>
-            <button type="button" class="next-btn">Continue</button>
-        </div>
+      <div class="form-step" id="step-4">
+        <p class="step-indicator">Step 5 of 7</p>
+        <label for="Advisor">Do you currently work with a financial advisor?</label>
+        <select id="Advisor" name="Advisor" required>
+          <option value="" selected disabled>Select one</option>
+          <option value="Yes">Yes, I currently have an advisor</option>
+          <option value="No">No, I manage it myself</option>
+        </select>
+        <button type="button" class="next-btn">Continue</button>
+      </div>
 
-        <div class="form-step" id="step-5">
-            <p class="step-indicator">Step 6 of 7</p>
-            <label for="Assets">What is the approximate value of your investable assets?</label>
-            <p class="disclaimer">*No exact balances or account numbers required.</p>
-            <select id="Assets" name="Assets">
-                <option value="Under $250k">Under $250k</option>
-                <option value="$250k to $500k">$250k to $500k</option>
-                <option value="$500k to $1M">$500k to $1M</option>
-                <option value="Over $1M">Over $1M</option>
-            </select>
-            <button type="button" class="next-btn">Continue</button>
-        </div>
+      <div class="form-step" id="step-5">
+        <p class="step-indicator">Step 6 of 7</p>
+        <label for="Assets">What is the approximate value of your investable assets?</label>
+        <p class="disclaimer">No exact balances or account numbers required.</p>
+        <select id="Assets" name="Assets" required>
+          <option value="" selected disabled>Select one</option>
+          <option value="Under $250k">Under $250k</option>
+          <option value="$250k to $500k">$250k to $500k</option>
+          <option value="$500k to $1M">$500k to $1M</option>
+          <option value="Over $1M">Over $1M</option>
+        </select>
+        <button type="button" class="next-btn">Continue</button>
+      </div>
 
-        <div class="form-step" id="step-6">
-            <p class="step-indicator">Step 7 of 7</p>
-            <p class="contact-disclaimer"><em>Your information is used strictly to generate your custom PDF and coordinate your local fiduciary review. We never sell your data.</em></p>
-            
-            <label for="Name">Full Name</label>
-            <input type="text" id="Name" name="Name" required>
-            
-            <label for="Email">Email Address</label>
-            <input type="email" id="Email" name="Email" required>
-            
-            <label for="Phone">Phone Number</label>
-            <input type="tel" id="Phone" name="Phone" required>
+      <div class="form-step" id="step-6">
+        <p class="step-indicator">Step 7 of 7</p>
+        <p class="contact-disclaimer"><em>Your information is used strictly to generate your custom PDF and coordinate your local fiduciary review. We never sell your data.</em></p>
 
-            <button type="submit" id="submitLeadBtn">Generate My Custom Roadmap</button>
-        </div>
+        <label for="Name">Full Name</label>
+        <input type="text" id="Name" name="Name" required />
 
+        <label for="Email">Email Address</label>
+        <input type="email" id="Email" name="Email" required />
+
+        <label for="Phone">Phone Number</label>
+        <input type="tel" id="Phone" name="Phone" required />
+
+        <button type="submit" id="submitLeadBtn">Generate My Custom Roadmap</button>
+      </div>
     </form>
-</div>
+  </div>
 
-<script>
-    // Self-executing function so the code runs instantly without waiting for DOMContentLoaded
+  <script>
     (function initFunnel() {
-        
-        // ----------------------------------------------------
-        // 1. STEP PROGRESSION & FORM VALIDATION 
-        // ----------------------------------------------------
-        const steps = Array.from(document.querySelectorAll(".form-step"));
-        const nextBtns = document.querySelectorAll(".next-btn");
+      const form = document.getElementById("triadFlowForm");
+      if (!form) return;
 
-        nextBtns.forEach((btn) => {
-            btn.addEventListener("click", function () {
-                const currentStep = btn.closest(".form-step");
-                if (!currentStep) return;
+      const steps = Array.from(form.querySelectorAll(".form-step"));
+      const nextBtns = form.querySelectorAll(".next-btn");
+      const submitBtn = document.getElementById("submitLeadBtn");
+      const container = document.querySelector(".funnel-container");
 
-                // Enforce required fields (Will pop up a tooltip if left blank)
-                const requiredFields = currentStep.querySelectorAll("[required]");
-                for (const field of requiredFields) {
-                    if (!field.checkValidity() || field.value.trim() === "") {
-                        field.reportValidity();
-                        field.focus();
-                        return; // Blocks progression until filled
-                    }
-                }
+      const zipInput = document.getElementById("Zip");
+      const zipFeedback = document.getElementById("zipFeedback");
+      const zipVerified = document.getElementById("zipVerified");
+      const zipContinueBtn = document.getElementById("zipContinueBtn");
 
-                const currentIndex = steps.indexOf(currentStep);
-                if (currentIndex < 0 || currentIndex >= steps.length - 1) return;
+      const STEP_EVENT_MAP = {
+        "step-0": "Step_1_Zip",
+        "step-1": "Step_2_Age",
+        "step-2": "Step_3_Marital",
+        "step-3": "Step_4_Goal",
+        "step-4": "Step_5_Advisor",
+        "step-5": "Step_6_Assets",
+        "step-6": "Step_7_Contact"
+      };
 
-                currentStep.classList.remove("active");
-                steps[currentIndex + 1].classList.add("active");
-            });
-        });
+      const SESSION_KEY = "triadflow_step_events_seen";
+      const memorySeen = new Set();
 
-        // ----------------------------------------------------
-        // 2. META PIXEL STEP DROP-OFF TRACKING
-        // ----------------------------------------------------
-        const STEP_EVENT_MAP = {
-            "step-0": "Step_1_Zip",
-            "step-1": "Step_2_Age",
-            "step-2": "Step_3_Marital",
-            "step-3": "Step_4_Goal",
-            "step-4": "Step_5_Advisor",
-            "step-5": "Step_6_Assets",
-            "step-6": "Step_7_Contact"
-        };
-
-        const SESSION_KEY = "triadflow_step_events_seen";
-
-        function safeTrackCustom(eventName, params) {
-            try {
-                if (typeof window.fbq === "function") {
-                    window.fbq("trackCustom", eventName, params || {});
-                }
-            } catch (_) { }
-        }
-
-        function getVisibleStepId() {
-            const DOMsteps = document.querySelectorAll('.form-step');
-            for (const step of DOMsteps) {
-                const style = window.getComputedStyle(step);
-                if (style.display !== "none" && style.visibility !== "hidden" && step.offsetParent !== null) {
-                    return step.id;
-                }
+      function safeTrack(eventName, params) {
+        try {
+          if (typeof window.fbq === "function") {
+            if (eventName === "ViewContent" || eventName === "Lead" || eventName === "Schedule") {
+              window.fbq("track", eventName, params || {});
+            } else {
+              window.fbq("trackCustom", eventName, params || {});
             }
-            return null;
+          }
+        } catch (_) {}
+      }
+
+      function getSeenEvents() {
+        try {
+          const raw = sessionStorage.getItem(SESSION_KEY);
+          return new Set(raw ? JSON.parse(raw) : []);
+        } catch (_) {
+          return new Set(memorySeen);
         }
+      }
 
-        function trackOncePerSession(eventName, params) {
-            const seen = new Set(JSON.parse(sessionStorage.getItem(SESSION_KEY) || "[]"));
-            if (seen.has(eventName)) return;
-            seen.add(eventName);
-            sessionStorage.setItem(SESSION_KEY, JSON.stringify([...seen]));
-            safeTrackCustom(eventName, params);
+      function setSeenEvents(seenSet) {
+        try {
+          sessionStorage.setItem(SESSION_KEY, JSON.stringify([...seenSet]));
+        } catch (_) {
+          memorySeen.clear();
+          for (const item of seenSet) memorySeen.add(item);
         }
+      }
 
-        document.addEventListener("click", function (e) {
-            const nextBtn = e.target.closest('.next-btn');
-            if (!nextBtn) return;
-            
-            const fromStepId = getVisibleStepId();
-            
-            requestAnimationFrame(function () {
-                const toStepId = getVisibleStepId();
-                if (!fromStepId || !toStepId || fromStepId === toStepId) return;
-                const eventName = STEP_EVENT_MAP[fromStepId];
-                if (eventName) trackOncePerSession(eventName, { from_step: fromStepId, to_step: toStepId });
-            });
-        }, true);
+      function trackOncePerSession(eventName, params) {
+        const seen = getSeenEvents();
+        if (seen.has(eventName)) return;
+        seen.add(eventName);
+        setSeenEvents(seen);
+        safeTrack(eventName, params);
+      }
 
-        const submitBtn = document.getElementById("submitLeadBtn");
-        if (submitBtn) {
-            submitBtn.addEventListener("click", function () {
-                trackOncePerSession("Step_7_Contact", { from_step: "step-6" });
-            });
+      function getTriadCity(zip) {
+        const z = Number(zip);
+        if (z >= 27401 && z <= 27455) return "Greensboro";
+        if (z >= 27101 && z <= 27127) return "Winston-Salem";
+        if (z >= 27260 && z <= 27265) return "High Point";
+        return null;
+      }
+
+      function syncZipButtonState() {
+        if (!zipInput || !zipContinueBtn) return;
+        zipInput.value = zipInput.value.replace(/\D/g, "").slice(0, 5);
+        zipContinueBtn.disabled = zipInput.value.length !== 5;
+
+        if (zipInput.value.length < 5) {
+          zipFeedback.textContent = "";
+          zipVerified.style.display = "none";
         }
+      }
 
-        // ----------------------------------------------------
-        // 3. SILENT FORM SUBMISSION & SUCCESS SCREEN
-        // ----------------------------------------------------
-        document.getElementById('triadFlowForm').addEventListener('submit', function(e) {
-            e.preventDefault(); 
+      if (zipInput && zipContinueBtn) {
+        zipInput.addEventListener("input", syncZipButtonState);
+        syncZipButtonState();
+      }
 
-            submitBtn.innerText = "Generating Roadmap..."; 
-            submitBtn.disabled = true;
+      nextBtns.forEach((btn) => {
+        btn.addEventListener("click", function () {
+          const currentStep = btn.closest(".form-step");
+          if (!currentStep) return;
 
-            const formData = new FormData(this);
+          const currentIndex = steps.indexOf(currentStep);
+          if (currentIndex < 0 || currentIndex >= steps.length - 1) return;
 
-            fetch(this.action, {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => {
-                this.style.display = 'none';
-                
-                const successDiv = document.createElement('div');
-                successDiv.innerHTML = `
-                    <h2 style="color: #2b6cb0; font-size: 28px; margin-bottom: 10px;">Success! Your Roadmap is Ready.</h2>
-                    
-                    <img src="will.webp" alt="William Chappell" style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover; margin: 20px auto; display: block; border: 4px solid #2b6cb0; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-                    
-                    <p style="font-size: 18px; margin-top: 15px;">Based on your answers, your profile has been matched with <strong>Lead Advisor William Chappell</strong>.</p>
-                    <p style="font-size: 18px; font-weight: bold; color: #1a365d;">Please check your email inbox (and spam folder) in the next 60 seconds.</p>
-                    <p style="font-size: 16px; margin-top: 15px; color: #4a5568;"><em>Your custom 2026 Financial Transition Roadmap is attached to that email.</em></p>
-                    
-                    <a href="https://calendly.com/wchappell37/retirement-consultation" target="_blank" style="display: inline-block; margin-top: 25px; padding: 18px 30px; background-color: #d97706; color: white; text-decoration: none; font-size: 20px; font-weight: bold; border-radius: 6px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: background 0.3s;">Schedule Your Priority Review Now</a>
-                `;
-                document.querySelector('.funnel-container').appendChild(successDiv);
-            })
-            .catch(error => {
-                submitBtn.innerText = "Error - Please try again";
-                submitBtn.disabled = false;
-            });
+          const fields = currentStep.querySelectorAll("input, select, textarea");
+          for (const field of fields) {
+            if (!field.checkValidity()) {
+              field.reportValidity();
+              field.focus();
+              return;
+            }
+          }
+
+          if (currentStep.id === "step-0") {
+            const city = getTriadCity(zipInput.value.trim());
+            if (!city) {
+              zipFeedback.textContent = "Please enter a valid Triad ZIP code.";
+              zipVerified.style.display = "none";
+              return;
+            }
+            zipFeedback.textContent = city + ", NC confirmed.";
+            zipVerified.style.display = "block";
+          }
+
+          const fromStepId = currentStep.id;
+          const toStep = steps[currentIndex + 1];
+
+          currentStep.classList.remove("active");
+          toStep.classList.add("active");
+
+          const eventName = STEP_EVENT_MAP[fromStepId];
+          if (eventName) {
+            trackOncePerSession(eventName, { from_step: fromStepId, to_step: toStep.id });
+          }
         });
+      });
 
+      safeTrack("ViewContent");
+
+      window.addEventListener("message", function (e) {
+        if (e.origin !== "https://calendly.com") return;
+        if (e.data && e.data.event === "calendly.event_scheduled") {
+          safeTrack("Schedule");
+        }
+      });
+
+      function renderSuccess() {
+        if (!container || document.getElementById("success-state")) return;
+
+        form.style.display = "none";
+
+        const successDiv = document.createElement("div");
+        successDiv.id = "success-state";
+        successDiv.innerHTML = `
+          <h2 style="color:#2b6cb0;font-size:28px;margin-bottom:10px;">Success! Your Roadmap is Ready.</h2>
+          <img src="will.webp" alt="William Chappell" style="width:140px;height:140px;border-radius:50%;object-fit:cover;margin:20px auto;display:block;border:4px solid #2b6cb0;box-shadow:0 4px 10px rgba(0,0,0,0.1);">
+          <p style="font-size:18px;margin-top:15px;">Based on your answers, your profile has been matched with <strong>Lead Advisor William Chappell</strong>.</p>
+          <p style="font-size:18px;font-weight:bold;color:#1a365d;">Please check your email inbox (and spam folder) in the next 60 seconds.</p>
+          <p style="font-size:16px;margin-top:15px;color:#4a5568;"><em>Your custom 2026 Financial Transition Roadmap is attached to that email.</em></p>
+          <a href="https://calendly.com/wchappell37/retirement-consultation" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin-top:25px;padding:18px 30px;background-color:#d97706;color:white;text-decoration:none;font-size:20px;font-weight:bold;border-radius:6px;box-shadow:0 4px 6px rgba(0,0,0,0.1);transition:background 0.3s;">
+            Schedule Your Priority Review Now
+          </a>
+        `;
+        container.appendChild(successDiv);
+      }
+
+      form.addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+
+        trackOncePerSession("Step_7_Contact", { from_step: "step-6" });
+
+        submitBtn.innerText = "Generating Roadmap...";
+        submitBtn.disabled = true;
+
+        const controller = new AbortController();
+        const timeoutId = setTimeout(function () {
+          controller.abort();
+        }, 5000);
+
+        try {
+          await fetch(form.action, {
+            method: "POST",
+            mode: "no-cors",
+            body: new FormData(form),
+            signal: controller.signal
+          });
+
+          safeTrack("Lead");
+          renderSuccess();
+        } catch (_) {
+          submitBtn.innerText = "Error - Please try again";
+          submitBtn.disabled = false;
+          alert("Secure connection timeout. Please call our office directly to receive your roadmap.");
+        } finally {
+          clearTimeout(timeoutId);
+        }
+      });
     })();
-</script>
-
+  </script>
 </body>
 </html>
