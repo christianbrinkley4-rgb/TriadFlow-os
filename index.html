@@ -33,9 +33,8 @@
             position: relative;
         }
 
-        /* NEW CODEX CSS: Header */
         .header {
-            padding: 25px 30px 20px; /* Adjusted padding to fit text properly */
+            padding: 25px 30px 20px;
             text-align: center;
             border-bottom: 1px solid #d5e0ec;
             background: linear-gradient(180deg, #f7fbff 0%, #eef4fb 100%);
@@ -45,7 +44,7 @@
         .header p { font-size: 14px; font-weight: 500; color: var(--accent); display: flex; align-items: center; justify-content: center; gap: 8px; }
 
         .progress-bar-container { width: 100%; background: #f1f5f9; height: 6px; }
-        .progress-bar { height: 100%; background: var(--accent); width: 14%; transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1); border-radius: 0 4px 4px 0; }
+        .progress-bar { height: 100%; background: var(--accent); width: 0%; transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1); border-radius: 0 4px 4px 0; }
 
         .step-indicator { text-align: center; font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; }
 
@@ -74,8 +73,7 @@
         .consent-box { display: flex; align-items: flex-start; gap: 12px; margin-top: 25px; font-size: 12px; color: var(--text-muted); line-height: 1.6; padding: 18px; background: #f8fafc; border-radius: 8px; border: 1px solid var(--border); }
         .consent-box input { margin-top: 3px; cursor: pointer; width: 16px; height: 16px; }
         
-        /* NEW CODEX CSS: Submit Button */
-        #submitLeadBtn {
+        #submitLeadBtn, #zipContinueBtn {
             display: flex; justify-content: center; align-items: center; gap: 10px; width: 100%; margin-top: 30px;
             min-height: 54px;
             padding: 14px 22px;
@@ -90,20 +88,19 @@
             transition: transform 0.16s ease, box-shadow 0.16s ease, filter 0.16s ease;
             cursor: pointer;
         }
-        #submitLeadBtn:hover:enabled, #submitLeadBtn:focus-visible {
+        #submitLeadBtn:hover:enabled, #submitLeadBtn:focus-visible, #zipContinueBtn:hover:enabled {
             transform: translateY(-1px);
             filter: brightness(1.04);
             box-shadow: 0 14px 30px rgba(10, 27, 46, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.22);
             outline: 3px solid #9fc8ff;
             outline-offset: 2px;
         }
-        #submitLeadBtn:disabled { background: #cbd5e1; cursor: not-allowed; box-shadow: none; transform: none; border-color: #cbd5e1; }
+        #submitLeadBtn:disabled, #zipContinueBtn:disabled { background: #cbd5e1; cursor: not-allowed; box-shadow: none; transform: none; border-color: #cbd5e1; }
 
         .processing-state { text-align: center; padding: 50px 20px; }
         .spinner { border: 4px solid #f1f5f9; border-top: 4px solid var(--accent); border-radius: 50%; width: 60px; height: 60px; animation: spin 1s linear infinite; margin: 0 auto 30px; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         
-        /* NEW CODEX CSS: Match Card */
         .match-card {
             padding: 14px 16px;
             border: 1px solid #d6dee8;
@@ -126,17 +123,6 @@
         .success-banner p { font-size: 14px; color: var(--success); font-weight: 500; }
 
         .calendly-inline-widget { min-width: 320px; height: 500px; margin-top: 15px; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); background: white; box-shadow: 0 4px 15px rgba(0,0,0,0.03); }
-
-        .reviews-container { margin-top: 30px; border-top: 1px solid var(--border); padding-top: 25px; }
-        .reviews-header { text-align: center; font-size: 16px; color: var(--primary); margin-bottom: 20px; font-weight: 600; font-family: 'Playfair Display', serif; }
-        .review-card { background: #ffffff; padding: 20px; border-radius: 8px; margin-bottom: 15px; border: 1px solid var(--border); box-shadow: 0 2px 10px rgba(0,0,0,0.02); position: relative; }
-        .review-card::before { content: '\201C'; position: absolute; top: 10px; left: 15px; font-size: 40px; color: #f1f5f9; font-family: Georgia, serif; line-height: 1; z-index: 0; }
-        .stars { color: var(--highlight); font-size: 13px; margin-bottom: 8px; position: relative; z-index: 1; }
-        .review-text { font-size: 14px; color: var(--text-main); line-height: 1.5; margin-bottom: 10px; position: relative; z-index: 1; font-weight: 400; }
-        .review-author { font-size: 12px; font-weight: 600; color: var(--text-muted); display: flex; align-items: center; gap: 6px; }
-
-        .advisor-link { display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; text-align: center; margin-top: 20px; padding: 18px; font-size: 13px; color: var(--primary); font-weight: 600; text-decoration: none; border-radius: 8px; transition: all 0.2s; border: 2px solid var(--border); background: #f8fafc; }
-        .advisor-link:hover { background: #ffffff; border-color: var(--accent); color: var(--accent); box-shadow: 0 4px 12px rgba(0, 90, 140, 0.05); }
 
         .trust-footer { position: fixed; bottom: 0; left: 0; right: 0; background: #ffffff; padding: 12px; display: flex; justify-content: center; gap: 30px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-muted); font-weight: 500; z-index: 100; box-shadow: 0 -2px 10px rgba(0,0,0,0.03); }
         .trust-item { display: flex; align-items: center; gap: 6px; }
@@ -174,9 +160,29 @@
         </div>
         <div class="progress-bar-container"><div class="progress-bar" id="progressBar"></div></div>
 
-        <div class="step-container active" id="step-1">
-            <div class="step-indicator">Step 1 of 7</div>
-            <h2>What outcome should we prioritize first in your plan?</h2>
+        <div class="step-container active" id="step-0">
+            <div class="step-indicator">Local Market Verification</div>
+            <h2>Start with your ZIP code</h2>
+            <p class="subtitle">We use this to verify your local market and personalize your analysis.</p>
+
+            <div class="form-group" style="text-align: center; margin-top: 20px;">
+                <input id="zipCode" name="zipCode" type="text" inputmode="numeric" autocomplete="postal-code" maxlength="5" placeholder="e.g., 27408" aria-describedby="zipFeedback" class="form-control" style="text-align: center; font-size: 24px; font-weight: 700; letter-spacing: 4px; max-width: 250px; margin: 0 auto;">
+                
+                <p id="zipFeedback" aria-live="polite" style="margin-top: 15px; font-size: 14px; font-weight: 500; color: #dc2626; min-height: 20px;"></p>
+                
+                <p id="zipVerified" style="display:none; color: var(--success); font-weight: 600; font-size: 15px; margin-top: 10px;" aria-live="polite">
+                    <span aria-hidden="true"><i class="fa-solid fa-circle-check"></i></span> Local Verification Confirmed
+                </p>
+
+                <button type="button" id="zipContinueBtn" disabled>
+                    Continue to Analysis <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="step-container" id="step-1">
+            <div class="step-indicator">Step 1 of 6</div>
+            <h2 id="step-1-title">What outcome should we prioritize first in your plan?</h2>
             <p class="subtitle">Your answer focuses your roadmap on the decision that matters most right now.</p>
             <button class="option-btn" onclick="selectOption('goal', 'Tax Efficiency', 2)">
                 <i class="fa-solid fa-shield-halved"></i> Keeping my taxes as low as possible
@@ -190,7 +196,7 @@
         </div>
 
         <div class="step-container" id="step-2">
-            <div class="step-indicator">Step 2 of 7</div>
+            <div class="step-indicator">Step 2 of 6</div>
             <h2>Which age range should we use to model your retirement timeline?</h2>
             <p class="subtitle">We use this to align Social Security timing, Medicare windows, and distribution strategy.</p>
             <button class="option-btn" onclick="selectOption('age', 'Under 64', 3)">
@@ -205,7 +211,7 @@
         </div>
 
         <div class="step-container" id="step-3">
-            <div class="step-indicator">Step 3 of 7</div>
+            <div class="step-indicator">Step 3 of 6</div>
             <h2>Are you currently working with a financial advisor?</h2>
             <p class="subtitle">This helps us tailor your review as either a coordinated second opinion or a fresh planning track.</p>
             <button class="option-btn" onclick="selectOption('advisor', 'Yes', 4)">
@@ -217,7 +223,7 @@
         </div>
 
         <div class="step-container" id="step-4">
-            <div class="step-indicator">Step 4 of 7</div>
+            <div class="step-indicator">Step 4 of 6</div>
             <h2>What is your current marital status for planning purposes?</h2>
             <p class="subtitle">Household structure affects tax filing, beneficiary strategy, and survivor income protection.</p>
             <button class="option-btn" onclick="selectOption('marital', 'Married', 5)">
@@ -229,7 +235,7 @@
         </div>
 
         <div class="step-container" id="step-5">
-            <div class="step-indicator">Step 5 of 7</div>
+            <div class="step-indicator">Step 5 of 6</div>
             <h2>What is your approximate investable asset range?</h2>
             <p class="subtitle">A range is enough. Exact balances are not required at this stage.</p>
             <button class="option-btn" onclick="selectOption('assets', 'Under $250k', 6)">
@@ -247,7 +253,7 @@
         </div>
 
         <div class="step-container" id="step-6">
-            <div class="step-indicator">Step 6 of 7</div>
+            <div class="step-indicator">Step 6 of 6</div>
             <h2>Which annual household income range best fits?</h2>
             <p class="subtitle">This helps us identify tax-efficiency opportunities and cash-flow durability.</p>
             <button class="option-btn" onclick="selectOption('income', 'Under $103k', 7)">
@@ -314,7 +320,7 @@
                 <div class="advisor-details">
                     <h3>William Chappell</h3>
                     <p class="firm">Bankers Life</p>
-                    <p><i class="fa-solid fa-location-dot" style="color: var(--text-muted); font-size: 11px;"></i> Greensboro, North Carolina</p>
+                    <p id="dynamic-city-match"><i class="fa-solid fa-location-dot" style="color: var(--text-muted); font-size: 11px;"></i> Greensboro, North Carolina</p>
                     <p style="margin-top: 6px; font-size: 12px; color: var(--success); font-weight: 600;"><i class="fa-solid fa-bolt"></i> Currently accepting new reviews</p>
                 </div>
             </div>
@@ -325,33 +331,6 @@
                 <div class="calendly-inline-widget" data-url="https://calendly.com/your-placeholder-link/15min" style="min-width:320px;height:500px;"></div>
                 <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
             </div>
-
-            <div class="reviews-container">
-                <div class="reviews-header">What your Triad neighbors are saying</div>
-                
-                <div class="review-card">
-                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    <p class="review-text">"The transition to retirement felt overwhelming until Will broke everything down into simple steps. He is incredibly patient, honest, and truly cares about making sure you understand your options without any pressure."</p>
-                    <p class="review-author"><i class="fa-solid fa-circle-check" style="color: var(--success);"></i> Verified Client, Oak Ridge</p>
-                </div>
-
-                <div class="review-card">
-                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    <p class="review-text">"Will showed us a strategy to protect our savings that we didn't even know existed. Getting that 15-minute phone call was the best decision we made for our peace of mind this year. Highly recommend his team."</p>
-                    <p class="review-author"><i class="fa-solid fa-circle-check" style="color: var(--success);"></i> Verified Client, Winston-Salem</p>
-                </div>
-
-                <div class="review-card">
-                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-                    <p class="review-text">"Extremely professional and genuinely friendly. He didn't try to sell me a one-size-fits-all package; he actually listened to my goals and helped me build a customized plan for my family."</p>
-                    <p class="review-author"><i class="fa-solid fa-circle-check" style="color: var(--success);"></i> Verified Client, Greensboro</p>
-                </div>
-            </div>
-
-            <a href="https://agents.bankerslife.com/nc/greensboro/400-bellemeade/william-chappell" target="_blank" class="advisor-link">
-                <i class="fa-solid fa-building-shield"></i> Verify Credentials: Visit William's Official Bankers Life Page
-            </a>
-            
         </div>
     </div>
 
@@ -362,7 +341,7 @@
     </div>
 
     <script>
-        const userData = { goal: '', age: '', advisor: '', marital: '', assets: '', income: '' };
+        const userData = { zip: '', city: '', goal: '', age: '', advisor: '', marital: '', assets: '', income: '' };
 
         function calculateLeadScore(userData) {
             let points = 0;
@@ -391,32 +370,80 @@
             } catch (_) {}
         }
 
-        function applyLocalMarketHeader() {
-            const fallback = '<i class="fa-solid fa-map-location-dot"></i> Triad Local Market Guide';
-            try {
-                const params = new URLSearchParams(window.location.search || "");
-                const rawCity = params.get("city");
-                if (!rawCity) return;
-                const normalized = rawCity.replace(/\+/g, " ").replace(/([a-z])([A-Z])/g, "$1 $2").trim();
-                const safeCity = normalized.replace(/[^a-zA-Z\s'-]/g, "").replace(/\s+/g, " ").trim();
-                if (safeCity && safeCity.length <= 40) {
-                    const el = document.getElementById("local-header");
-                    if (el) el.innerHTML = `<i class="fa-solid fa-map-location-dot"></i> ${safeCity} Local Market Guide`;
+        // CODEX STEP 0 ZIP VERIFICATION LOGIC
+        function initTriadZipStep0() {
+            const zipInput = document.getElementById("zipCode");
+            const feedback = document.getElementById("zipFeedback");
+            const verified = document.getElementById("zipVerified");
+            const continueBtn = document.getElementById("zipContinueBtn");
+            const nextStepH1 = document.getElementById("step-1-title"); 
+            const dynamicCityMatch = document.getElementById("dynamic-city-match"); // Match card location
+
+            if (!zipInput || !feedback || !verified || !continueBtn) return;
+
+            function getTriadCity(zip) {
+                const z = Number(zip);
+                if (z >= 27401 && z <= 27455) return "Greensboro";
+                if (z >= 27101 && z <= 27127) return "Winston-Salem";
+                if (z >= 27260 && z <= 27265) return "High Point";
+                return null;
+            }
+
+            function handleZipValidation() {
+                zipInput.value = zipInput.value.replace(/\D/g, "").slice(0, 5);
+                const zip = zipInput.value;
+
+                verified.style.display = "none";
+                continueBtn.disabled = true;
+
+                if (zip.length < 5) {
+                    feedback.textContent = "";
+                    return;
                 }
-            } catch (_) {}
+
+                const city = getTriadCity(zip);
+
+                if (city) {
+                    feedback.textContent = "";
+                    verified.style.display = "block";
+                    continueBtn.disabled = false;
+
+                    if (nextStepH1) {
+                        nextStepH1.textContent = `Personalized Analysis for ${city} Households.`;
+                    }
+                    if (dynamicCityMatch) {
+                        dynamicCityMatch.innerHTML = `<i class="fa-solid fa-location-dot" style="color: var(--text-muted); font-size: 11px;"></i> matched for ${city}, NC`;
+                    }
+                } else {
+                    feedback.textContent = "Outside of primary service area. Please enter a valid Triad ZIP code.";
+                }
+            }
+
+            zipInput.addEventListener("input", handleZipValidation);
+            zipInput.addEventListener("blur", handleZipValidation);
+
+            // Step 0 -> Step 1 Transition Bridge
+            continueBtn.addEventListener("click", () => {
+                userData.zip = zipInput.value;
+                userData.city = getTriadCity(zipInput.value);
+
+                document.getElementById('step-0').classList.remove('active');
+                document.getElementById('step-1').classList.add('active');
+                document.getElementById('progressBar').style.width = '14.2%';
+            });
         }
 
         window.addEventListener("DOMContentLoaded", () => {
             captureUtmParamsOnLoad();
-            applyLocalMarketHeader();
+            initTriadZipStep0();
         });
 
         function selectOption(category, value, nextStepId) {
             userData[category] = value; 
             document.querySelectorAll('.step-container').forEach(el => el.classList.remove('active'));
             document.getElementById('step-' + nextStepId).classList.add('active');
-            const progress = (nextStepId - 1) * 14.2; 
-            document.getElementById('progressBar').style.width = progress + '%';
+            const progress = nextStepId * 14.2; 
+            document.getElementById('progressBar').style.width = progress > 100 ? '100%' : progress + '%';
         }
 
         function toggleSubmitBtn() {
@@ -436,6 +463,8 @@
                 name: document.getElementById('leadName').value,
                 email: document.getElementById('leadEmail').value,
                 phone: document.getElementById('leadPhone').value,
+                zip: userData.zip,
+                city: userData.city,
                 goal: userData.goal,
                 age: userData.age,
                 advisor: userData.advisor,
@@ -457,6 +486,7 @@
             const timeoutId = setTimeout(() => controller.abort(), 5000);
 
             try {
+                // YOUR EXISTING ZAPIER WEBHOOK URL
                 await fetch('https://hooks.zapier.com/hooks/catch/27406693/uv9ep9b/', {
                     method: "POST",
                     mode: "no-cors",
@@ -464,11 +494,6 @@
                     body: JSON.stringify(payload),
                     signal: controller.signal
                 });
-                
-                // Meta Pixel Trigger Event
-                if (typeof fbq === 'function') {
-                    fbq('track', 'Lead');
-                }
                 
             } catch (error) {
                 document.querySelector('.spinner').style.display = "none";
@@ -479,7 +504,7 @@
             }
 
             const loadingText = document.getElementById('loadingText');
-            setTimeout(() => { loadingText.innerText = "Customizing strategies based on your timeline..."; }, 1000);
+            setTimeout(() => { loadingText.innerText = `Customizing strategies based on your ${userData.city} timeline...`; }, 1000);
             setTimeout(() => { loadingText.innerText = "Finding the best local advisor match..."; }, 2500);
 
             setTimeout(() => {
