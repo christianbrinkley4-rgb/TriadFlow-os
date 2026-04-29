@@ -163,6 +163,7 @@
 </div>
 
 <script>
+<script>
     // 1. Basic UI Logic to progress through the form steps
     const steps = document.querySelectorAll('.form-step');
     const nextBtns = document.querySelectorAll('.next-btn');
@@ -174,7 +175,7 @@
         });
     });
 
-    // 2. TriadFlow - Step Drop-off Tracking for Meta Pixel
+    // 2. Meta Pixel Tracking Logic
     (function initTriadFlowStepTracking() {
       const STEP_EVENT_MAP = {
         "step-0": "Step_1_Zip",
@@ -186,8 +187,6 @@
         "step-6": "Step_7_Contact"
       };
 
-      const STEP_SELECTOR = ".form-step";
-      const NEXT_SELECTOR = ".next-btn";
       const SESSION_KEY = "triadflow_step_events_seen";
 
       function safeTrackCustom(eventName, params) {
@@ -199,11 +198,12 @@
       }
 
       function getVisibleStepId() {
-        const DOMsteps = document.querySelectorAll(STEP_SELECTOR);
+        const DOMsteps = document.querySelectorAll('.form-step');
         for (const step of DOMsteps) {
           const style = window.getComputedStyle(step);
-          const visible = style.display !== "none" && style.visibility !== "hidden" && step.offsetParent !== null;
-          if (visible && step.id) return step.id;
+          if (style.display !== "none" && style.visibility !== "hidden" && step.offsetParent !== null) {
+            return step.id;
+          }
         }
         return null;
       }
@@ -217,7 +217,7 @@
       }
 
       document.addEventListener("click", function (e) {
-        const nextBtn = e.target.closest(NEXT_SELECTOR);
+        const nextBtn = e.target.closest('.next-btn');
         if (!nextBtn) return;
         
         const fromStepId = getVisibleStepId();
@@ -226,8 +226,7 @@
           const toStepId = getVisibleStepId();
           if (!fromStepId || !toStepId || fromStepId === toStepId) return;
           const eventName = STEP_EVENT_MAP[fromStepId];
-          if (!eventName) return;
-          trackOncePerSession(eventName, { from_step: fromStepId, to_step: toStepId });
+          if (eventName) trackOncePerSession(eventName, { from_step: fromStepId, to_step: toStepId });
         });
       }, true);
 
@@ -238,7 +237,41 @@
         });
       }
     })();
-</script>
 
-</body>
-</html>
+    // 3. Silent Form Submission with Calendly & Photo Integration
+    document.getElementById('triadFlowForm').addEventListener('submit', function(e) {
+        e.preventDefault(); 
+
+        const submitBtn = document.getElementById('submitLeadBtn');
+        submitBtn.innerText = "Generating Roadmap..."; 
+        submitBtn.disabled = true;
+
+        const formData = new FormData(this);
+
+        fetch(this.action, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            this.style.display = 'none';
+            
+            const successDiv = document.createElement('div');
+            successDiv.innerHTML = `
+                <h2 style="color: #2b6cb0; font-size: 28px; margin-bottom: 10px;">Success! Your Roadmap is Ready.</h2>
+                
+                <img src="will.webp" alt="William Chappell" style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover; margin: 20px auto; display: block; border: 4px solid #2b6cb0; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                
+                <p style="font-size: 18px; margin-top: 15px;">Based on your answers, your profile has been matched with <strong>Lead Advisor William Chappell</strong>.</p>
+                <p style="font-size: 18px; font-weight: bold; color: #1a365d;">Please check your email inbox (and spam folder) in the next 60 seconds.</p>
+                <p style="font-size: 16px; margin-top: 15px; color: #4a5568;"><em>Your custom 2026 Financial Transition Roadmap is attached to that email.</em></p>
+                
+                <a href="https://calendly.com/wchappell37/retirement-consultation" target="_blank" style="display: inline-block; margin-top: 25px; padding: 18px 30px; background-color: #d97706; color: white; text-decoration: none; font-size: 20px; font-weight: bold; border-radius: 6px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: background 0.3s;">Schedule Your Priority Review Now</a>
+            `;
+            document.querySelector('.funnel-container').appendChild(successDiv);
+        })
+        .catch(error => {
+            submitBtn.innerText = "Error - Please try again";
+            submitBtn.disabled = false;
+        });
+    });
+    </script>
