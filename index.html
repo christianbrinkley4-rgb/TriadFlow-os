@@ -1,16 +1,574 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>TriadFlow Test</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2026 Financial & Tax Transition Roadmap</title>
+
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version="2.0";
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,"script",
+    "https://connect.facebook.net/en_US/fbevents.js");
+    fbq("init", "YOUR_PIXEL_ID");
+    fbq("track", "PageView");
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1" />
+  </noscript>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f7f6;
+      color: #1f2937;
+      line-height: 1.6;
+      font-size: 18px;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .funnel-container {
+      background: #fff;
+      padding: 36px;
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      max-width: 640px;
+      width: 100%;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 30px;
+      margin: 0 0 12px;
+      color: #1a365d;
+    }
+
+    .trust-strip {
+      font-size: 16px;
+      font-weight: 700;
+      color: #2b6cb0;
+      margin: 0 0 26px;
+    }
+
+    .form-step {
+      display: none;
+    }
+
+    .form-step.active {
+      display: block;
+      animation: fadeIn 0.35s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .step-indicator {
+      font-size: 15px;
+      color: #4a5568;
+      margin-bottom: 14px;
+      font-weight: 700;
+    }
+
+    h2 {
+      margin: 0 0 8px;
+      font-size: 28px;
+      color: #1a365d;
+    }
+
+    .subtitle {
+      margin: 0 0 18px;
+      color: #4a5568;
+      font-size: 16px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 700;
+      text-align: left;
+      color: #1f2937;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 16px;
+      border: 2px solid #cbd5e0;
+      border-radius: 6px;
+      font-size: 18px;
+      box-sizing: border-box;
+      background: #fff;
+      color: #1f2937;
+    }
+
+    input:focus-visible,
+    select:focus-visible,
+    .next-btn:focus-visible,
+    #submitLeadBtn:focus-visible {
+      outline: 3px solid #90cdf4;
+      outline-offset: 2px;
+    }
+
+    .disclaimer {
+      font-size: 15px;
+      font-style: italic;
+      color: #4a5568;
+      text-align: left;
+      margin-top: -8px;
+      margin-bottom: 14px;
+    }
+
+    .contact-disclaimer {
+      font-size: 16px;
+      color: #2d3748;
+      text-align: left;
+      margin-bottom: 14px;
+      padding: 12px;
+      background: #edf2f7;
+      border-radius: 6px;
+    }
+
+    #zipFeedback {
+      min-height: 22px;
+      margin: -2px 0 10px;
+      text-align: left;
+      font-size: 15px;
+      color: #b00020;
+    }
+
+    #zipVerified {
+      display: none;
+      margin: -2px 0 12px;
+      text-align: left;
+      font-size: 15px;
+      color: #166534;
+      font-weight: 700;
+    }
+
+    .next-btn,
+    #submitLeadBtn {
+      background-color: #2b6cb0;
+      color: #fff;
+      border: none;
+      padding: 18px 24px;
+      font-size: 20px;
+      font-weight: 700;
+      border-radius: 6px;
+      cursor: pointer;
+      width: 100%;
+      min-height: 56px;
+      transition: background 0.2s ease;
+    }
+
+    .next-btn:hover,
+    #submitLeadBtn:hover {
+      background-color: #1a365d;
+    }
+
+    .next-btn:disabled,
+    #submitLeadBtn:disabled {
+      background-color: #9aa9bd;
+      cursor: not-allowed;
+    }
+  </style>
 </head>
-<body style="font-family:Arial;padding:40px">
-  <h1>TriadFlow is live</h1>
-  <p>If you can see this, GitHub Pages is working.</p>
+<body>
+  <div class="funnel-container">
+    <h1>2026 Financial & Tax Transition Roadmap</h1>
+    <p class="trust-strip">Encrypted | Never Sold | Reviewed by a Local Fiduciary</p>
+
+    <form id="triadFlowForm" action="https://hooks.zapier.com/hooks/catch/27406693/uv9ep9b/" method="POST">
+      <!-- Step 1 -->
+      <div class="form-step active" id="step-0">
+        <p class="step-indicator">Step 1 of 7</p>
+        <h2>Start with your ZIP code</h2>
+        <p class="subtitle">We verify local eligibility before building your roadmap.</p>
+
+        <label for="Zip">Enter your Triad ZIP Code:</label>
+        <input
+          type="text"
+          id="Zip"
+          name="Zip"
+          placeholder="e.g. 27401"
+          inputmode="numeric"
+          maxlength="5"
+          pattern="[0-9]{5}"
+          title="Please enter a valid 5-digit ZIP code."
+          required
+        />
+        <p id="zipFeedback"></p>
+        <p id="zipVerified">Local Verification Confirmed</p>
+        <button type="button" class="next-btn" id="zipContinueBtn" disabled>Continue</button>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="form-step" id="step-1">
+        <p class="step-indicator">Step 2 of 7</p>
+        <h2 id="step-1-title">Personalized Analysis for Triad Households.</h2>
+        <p class="subtitle">This helps align timeline planning with the right strategy.</p>
+
+        <label for="Age">What is your current age range?</label>
+        <select id="Age" name="Age" required>
+          <option value="" selected disabled>Select one</option>
+          <option value="Under 60">Under 60</option>
+          <option value="60 to 63">60 to 63</option>
+          <option value="64 to 65">64 to 65</option>
+          <option value="66 to 70">66 to 70</option>
+          <option value="Over 70">Over 70</option>
+        </select>
+        <button type="button" class="next-btn">Continue</button>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="form-step" id="step-2">
+        <p class="step-indicator">Step 3 of 7</p>
+        <h2>Household Planning Context</h2>
+        <p class="subtitle">Used to model beneficiary and survivor planning scenarios.</p>
+
+        <label for="Marital">What is your marital status?</label>
+        <select id="Marital" name="Marital" required>
+          <option value="" selected disabled>Select one</option>
+          <option value="Married">Married</option>
+          <option value="Single">Single</option>
+          <option value="Widowed">Widowed</option>
+          <option value="Divorced">Divorced</option>
+        </select>
+        <button type="button" class="next-btn">Continue</button>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="form-step" id="step-3">
+        <p class="step-indicator">Step 4 of 7</p>
+        <h2>Primary Planning Priority</h2>
+        <p class="subtitle">We focus your roadmap around the outcome that matters most first.</p>
+
+        <label for="Goal">What is your primary financial focus right now?</label>
+        <select id="Goal" name="Goal" required>
+          <option value="" selected disabled>Select one</option>
+          <option value="Tax Efficiency">Tax Efficiency and Avoiding Drag</option>
+          <option value="Market Protection">Market Protection and Risk Control</option>
+          <option value="Income Optimization">Income Optimization and Distribution</option>
+        </select>
+        <button type="button" class="next-btn">Continue</button>
+      </div>
+
+      <!-- Step 5 -->
+      <div class="form-step" id="step-4">
+        <p class="step-indicator">Step 5 of 7</p>
+        <h2>Current Advisory Structure</h2>
+        <p class="subtitle">This helps us tailor either a second-opinion review or a new planning track.</p>
+
+        <label for="Advisor">Do you currently work with a financial advisor?</label>
+        <select id="Advisor" name="Advisor" required>
+          <option value="" selected disabled>Select one</option>
+          <option value="Yes">Yes, I currently have an advisor</option>
+          <option value="No">No, I manage it myself</option>
+        </select>
+        <button type="button" class="next-btn">Continue</button>
+      </div>
+
+      <!-- Step 6 -->
+      <div class="form-step" id="step-5">
+        <p class="step-indicator">Step 6 of 7</p>
+        <h2>Asset Range Snapshot</h2>
+        <p class="subtitle">Range only. No exact balances or account numbers required.</p>
+
+        <label for="Assets">What is the approximate value of your investable assets?</label>
+        <p class="disclaimer">No exact balances or account numbers required.</p>
+        <select id="Assets" name="Assets" required>
+          <option value="" selected disabled>Select one</option>
+          <option value="Under $250k">Under $250k</option>
+          <option value="$250k to $500k">$250k to $500k</option>
+          <option value="$500k to $1M">$500k to $1M</option>
+          <option value="Over $1M">Over $1M</option>
+        </select>
+        <button type="button" class="next-btn">Continue</button>
+      </div>
+
+      <!-- Step 7 -->
+      <div class="form-step" id="step-6">
+        <p class="step-indicator">Step 7 of 7</p>
+        <h2>Deliver Your Personalized Roadmap</h2>
+        <p class="contact-disclaimer"><em>Your information is used only to deliver your custom PDF and coordinate a local fiduciary review. We never sell your data.</em></p>
+
+        <label for="Name">Full Name</label>
+        <input type="text" id="Name" name="Name" required />
+
+        <label for="Email">Email Address</label>
+        <input type="email" id="Email" name="Email" required />
+
+        <label for="Phone">Phone Number</label>
+        <input type="tel" id="Phone" name="Phone" required />
+
+        <button type="submit" id="submitLeadBtn">Generate My Custom Roadmap</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    (function initFunnel() {
+      var form = document.getElementById("triadFlowForm");
+      if (!form) return;
+
+      var steps = Array.prototype.slice.call(form.querySelectorAll(".form-step"));
+      var nextBtns = form.querySelectorAll(".next-btn");
+      var submitBtn = document.getElementById("submitLeadBtn");
+      var container = document.querySelector(".funnel-container");
+
+      var zipInput = document.getElementById("Zip");
+      var zipFeedback = document.getElementById("zipFeedback");
+      var zipVerified = document.getElementById("zipVerified");
+      var zipContinueBtn = document.getElementById("zipContinueBtn");
+
+      var STEP_EVENT_MAP = {
+        "step-0": "Step_1_Zip",
+        "step-1": "Step_2_Age",
+        "step-2": "Step_3_Marital",
+        "step-3": "Step_4_Goal",
+        "step-4": "Step_5_Advisor",
+        "step-5": "Step_6_Assets",
+        "step-6": "Step_7_Contact"
+      };
+
+      var SESSION_KEY = "triadflow_step_events_seen";
+      var memorySeen = {};
+
+      function safeFbq(method, eventName, params) {
+        try {
+          if (typeof window.fbq === "function") {
+            window.fbq(method, eventName, params || {});
+          }
+        } catch (e) {}
+      }
+
+      function trackStandard(eventName, params) {
+        safeFbq("track", eventName, params);
+      }
+
+      function trackCustom(eventName, params) {
+        safeFbq("trackCustom", eventName, params);
+      }
+
+      function getSeen() {
+        try {
+          var raw = sessionStorage.getItem(SESSION_KEY);
+          return raw ? JSON.parse(raw) : {};
+        } catch (e) {
+          return memorySeen;
+        }
+      }
+
+      function setSeen(obj) {
+        try {
+          sessionStorage.setItem(SESSION_KEY, JSON.stringify(obj));
+        } catch (e) {
+          memorySeen = obj;
+        }
+      }
+
+      function trackOncePerSession(eventName, params) {
+        var seen = getSeen();
+        if (seen[eventName]) return;
+        seen[eventName] = true;
+        setSeen(seen);
+        trackCustom(eventName, params);
+      }
+
+      function getTriadCity(zip) {
+        var z = Number(zip);
+        if (z >= 27401 && z <= 27455) return "Greensboro";
+        if (z >= 27101 && z <= 27127) return "Winston-Salem";
+        if (z >= 27260 && z <= 27265) return "High Point";
+        return null;
+      }
+
+      function normalizeZip() {
+        if (!zipInput) return "";
+        zipInput.value = (zipInput.value || "").replace(/\D/g, "").slice(0, 5);
+        return zipInput.value;
+      }
+
+      function validateZip(showUi) {
+        if (!zipInput) return { ok: false, city: "" };
+
+        var zip = normalizeZip();
+
+        if (!/^[0-9]{5}$/.test(zip)) {
+          zipInput.setCustomValidity("Please enter a valid 5-digit ZIP code.");
+          if (showUi && zipFeedback) zipFeedback.textContent = "Please enter a valid 5-digit ZIP code.";
+          if (showUi && zipVerified) zipVerified.style.display = "none";
+          return { ok: false, city: "" };
+        }
+
+        var city = getTriadCity(zip);
+        if (!city) {
+          zipInput.setCustomValidity("Please enter a ZIP code in Greensboro, Winston-Salem, or High Point.");
+          if (showUi && zipFeedback) zipFeedback.textContent = "ZIP not in service area. Use Greensboro, Winston-Salem, or High Point.";
+          if (showUi && zipVerified) zipVerified.style.display = "none";
+          return { ok: false, city: "" };
+        }
+
+        zipInput.setCustomValidity("");
+        if (showUi && zipFeedback) zipFeedback.textContent = city + ", NC confirmed.";
+        if (showUi && zipVerified) zipVerified.style.display = "block";
+        return { ok: true, city: city };
+      }
+
+      function syncZipButton() {
+        if (!zipInput || !zipContinueBtn) return;
+        var zip = normalizeZip();
+        zipContinueBtn.disabled = !/^[0-9]{5}$/.test(zip);
+
+        if (zip.length < 5) {
+          if (zipFeedback) zipFeedback.textContent = "";
+          if (zipVerified) zipVerified.style.display = "none";
+        }
+      }
+
+      if (zipInput && zipContinueBtn) {
+        zipInput.addEventListener("input", syncZipButton);
+        zipInput.addEventListener("blur", function () {
+          validateZip(true);
+        });
+        syncZipButton();
+      }
+
+      function validateCurrentStep(currentStep) {
+        var fields = currentStep.querySelectorAll("input, select, textarea");
+        for (var i = 0; i < fields.length; i++) {
+          var field = fields[i];
+          if (!field.checkValidity()) {
+            field.reportValidity();
+            field.focus();
+            return false;
+          }
+        }
+        return true;
+      }
+
+      for (var b = 0; b < nextBtns.length; b++) {
+        nextBtns[b].addEventListener("click", function () {
+          var currentStep = this.closest(".form-step");
+          if (!currentStep) return;
+
+          var currentIndex = steps.indexOf(currentStep);
+          if (currentIndex < 0 || currentIndex >= steps.length - 1) return;
+
+          if (currentStep.id === "step-0") {
+            var zipResult = validateZip(true);
+            if (!zipResult.ok) {
+              if (zipInput) {
+                zipInput.reportValidity();
+                zipInput.focus();
+              }
+              return;
+            }
+
+            var step1Title = document.getElementById("step-1-title");
+            if (step1Title) {
+              step1Title.textContent = "Personalized Analysis for " + zipResult.city + " Households.";
+            }
+          }
+
+          if (!validateCurrentStep(currentStep)) return;
+
+          var fromStepId = currentStep.id;
+          var toStep = steps[currentIndex + 1];
+
+          currentStep.classList.remove("active");
+          toStep.classList.add("active");
+
+          var eventName = STEP_EVENT_MAP[fromStepId];
+          if (eventName) {
+            trackOncePerSession(eventName, { from_step: fromStepId, to_step: toStep.id });
+          }
+        });
+      }
+
+      function renderSuccess() {
+        if (!container) return;
+        if (document.getElementById("success-state")) return;
+
+        form.style.display = "none";
+
+        var successDiv = document.createElement("div");
+        successDiv.id = "success-state";
+        successDiv.innerHTML =
+          '<h2 style="color:#2b6cb0;font-size:28px;margin-bottom:10px;">Success! Your Roadmap is Ready.</h2>' +
+          '<img src="will.webp" alt="William Chappell" style="width:140px;height:140px;border-radius:50%;object-fit:cover;margin:20px auto;display:block;border:4px solid #2b6cb0;box-shadow:0 4px 10px rgba(0,0,0,0.1);">' +
+          '<p style="font-size:18px;margin-top:15px;">Based on your answers, your profile has been matched with <strong>Lead Advisor William Chappell</strong>.</p>' +
+          '<p style="font-size:18px;font-weight:bold;color:#1a365d;">Please check your email inbox (and spam folder) in the next 60 seconds.</p>' +
+          '<p style="font-size:16px;margin-top:15px;color:#4a5568;"><em>Your custom 2026 Financial Transition Roadmap is attached to that email.</em></p>' +
+          '<a href="https://calendly.com/wchappell37/retirement-consultation" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin-top:25px;padding:18px 30px;background-color:#d97706;color:white;text-decoration:none;font-size:20px;font-weight:bold;border-radius:6px;box-shadow:0 4px 6px rgba(0,0,0,0.1);">Schedule Your Priority Review Now</a>';
+
+        container.appendChild(successDiv);
+      }
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+
+        trackOncePerSession("Step_7_Contact", { from_step: "step-6" });
+
+        if (submitBtn) {
+          submitBtn.innerText = "Generating Roadmap...";
+          submitBtn.disabled = true;
+        }
+
+        var controller = new AbortController();
+        var timeoutId = setTimeout(function () {
+          controller.abort();
+        }, 5000);
+
+        fetch(form.action, {
+          method: "POST",
+          mode: "no-cors",
+          body: new FormData(form),
+          signal: controller.signal
+        })
+          .then(function () {
+            trackStandard("Lead");
+            renderSuccess();
+          })
+          .catch(function () {
+            if (submitBtn) {
+              submitBtn.innerText = "Error - Please try again";
+              submitBtn.disabled = false;
+            }
+            alert("Secure connection timeout. Please call our office directly to receive your roadmap.");
+          })
+          .finally(function () {
+            clearTimeout(timeoutId);
+          });
+      });
+
+      trackStandard("ViewContent");
+
+      window.addEventListener("message", function (e) {
+        if (e.origin !== "https://calendly.com") return;
+        if (e.data && e.data.event === "calendly.event_scheduled") {
+          trackStandard("Schedule");
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
-
-})();
-</script>
-
