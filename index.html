@@ -67,12 +67,6 @@
             min-height: 56px; 
         }
         .next-btn:hover, #submitLeadBtn:hover { background-color: #1a365d; }
-        
-        /* Disabled state styling for Codex's validation */
-        .next-btn:disabled {
-            background-color: #a0aec0;
-            cursor: not-allowed;
-        }
     </style>
 </head>
 <body>
@@ -169,8 +163,141 @@
 </div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
+    // Self-executing function so the code runs instantly without waiting for DOMContentLoaded
+    (function initFunnel() {
         
         // ----------------------------------------------------
-        // 1. STEP PROGRESSION & FORM VALIDATION (CODEX FIX)
+        // 1. STEP PROGRESSION & FORM VALIDATION 
         // ----------------------------------------------------
+        const steps = Array.from(document.querySelectorAll(".form-step"));
+        const nextBtns = document.querySelectorAll(".next-btn");
+
+        nextBtns.forEach((btn) => {
+            btn.addEventListener("click", function () {
+                const currentStep = btn.closest(".form-step");
+                if (!currentStep) return;
+
+                // Enforce required fields (Will pop up a tooltip if left blank)
+                const requiredFields = currentStep.querySelectorAll("[required]");
+                for (const field of requiredFields) {
+                    if (!field.checkValidity() || field.value.trim() === "") {
+                        field.reportValidity();
+                        field.focus();
+                        return; // Blocks progression until filled
+                    }
+                }
+
+                const currentIndex = steps.indexOf(currentStep);
+                if (currentIndex < 0 || currentIndex >= steps.length - 1) return;
+
+                currentStep.classList.remove("active");
+                steps[currentIndex + 1].classList.add("active");
+            });
+        });
+
+        // ----------------------------------------------------
+        // 2. META PIXEL STEP DROP-OFF TRACKING
+        // ----------------------------------------------------
+        const STEP_EVENT_MAP = {
+            "step-0": "Step_1_Zip",
+            "step-1": "Step_2_Age",
+            "step-2": "Step_3_Marital",
+            "step-3": "Step_4_Goal",
+            "step-4": "Step_5_Advisor",
+            "step-5": "Step_6_Assets",
+            "step-6": "Step_7_Contact"
+        };
+
+        const SESSION_KEY = "triadflow_step_events_seen";
+
+        function safeTrackCustom(eventName, params) {
+            try {
+                if (typeof window.fbq === "function") {
+                    window.fbq("trackCustom", eventName, params || {});
+                }
+            } catch (_) { }
+        }
+
+        function getVisibleStepId() {
+            const DOMsteps = document.querySelectorAll('.form-step');
+            for (const step of DOMsteps) {
+                const style = window.getComputedStyle(step);
+                if (style.display !== "none" && style.visibility !== "hidden" && step.offsetParent !== null) {
+                    return step.id;
+                }
+            }
+            return null;
+        }
+
+        function trackOncePerSession(eventName, params) {
+            const seen = new Set(JSON.parse(sessionStorage.getItem(SESSION_KEY) || "[]"));
+            if (seen.has(eventName)) return;
+            seen.add(eventName);
+            sessionStorage.setItem(SESSION_KEY, JSON.stringify([...seen]));
+            safeTrackCustom(eventName, params);
+        }
+
+        document.addEventListener("click", function (e) {
+            const nextBtn = e.target.closest('.next-btn');
+            if (!nextBtn) return;
+            
+            const fromStepId = getVisibleStepId();
+            
+            requestAnimationFrame(function () {
+                const toStepId = getVisibleStepId();
+                if (!fromStepId || !toStepId || fromStepId === toStepId) return;
+                const eventName = STEP_EVENT_MAP[fromStepId];
+                if (eventName) trackOncePerSession(eventName, { from_step: fromStepId, to_step: toStepId });
+            });
+        }, true);
+
+        const submitBtn = document.getElementById("submitLeadBtn");
+        if (submitBtn) {
+            submitBtn.addEventListener("click", function () {
+                trackOncePerSession("Step_7_Contact", { from_step: "step-6" });
+            });
+        }
+
+        // ----------------------------------------------------
+        // 3. SILENT FORM SUBMISSION & SUCCESS SCREEN
+        // ----------------------------------------------------
+        document.getElementById('triadFlowForm').addEventListener('submit', function(e) {
+            e.preventDefault(); 
+
+            submitBtn.innerText = "Generating Roadmap..."; 
+            submitBtn.disabled = true;
+
+            const formData = new FormData(this);
+
+            fetch(this.action, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                this.style.display = 'none';
+                
+                const successDiv = document.createElement('div');
+                successDiv.innerHTML = `
+                    <h2 style="color: #2b6cb0; font-size: 28px; margin-bottom: 10px;">Success! Your Roadmap is Ready.</h2>
+                    
+                    <img src="will.webp" alt="William Chappell" style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover; margin: 20px auto; display: block; border: 4px solid #2b6cb0; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                    
+                    <p style="font-size: 18px; margin-top: 15px;">Based on your answers, your profile has been matched with <strong>Lead Advisor William Chappell</strong>.</p>
+                    <p style="font-size: 18px; font-weight: bold; color: #1a365d;">Please check your email inbox (and spam folder) in the next 60 seconds.</p>
+                    <p style="font-size: 16px; margin-top: 15px; color: #4a5568;"><em>Your custom 2026 Financial Transition Roadmap is attached to that email.</em></p>
+                    
+                    <a href="https://calendly.com/wchappell37/retirement-consultation" target="_blank" style="display: inline-block; margin-top: 25px; padding: 18px 30px; background-color: #d97706; color: white; text-decoration: none; font-size: 20px; font-weight: bold; border-radius: 6px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: background 0.3s;">Schedule Your Priority Review Now</a>
+                `;
+                document.querySelector('.funnel-container').appendChild(successDiv);
+            })
+            .catch(error => {
+                submitBtn.innerText = "Error - Please try again";
+                submitBtn.disabled = false;
+            });
+        });
+
+    })();
+</script>
+
+</body>
+</html>
