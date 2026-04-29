@@ -33,7 +33,14 @@
             position: relative;
         }
 
-        .header { padding: 35px 40px 25px; text-align: center; border-bottom: 1px solid var(--border); background: #ffffff; }
+        /* NEW CODEX CSS: Header */
+        .header {
+            padding: 25px 30px 20px; /* Adjusted padding to fit text properly */
+            text-align: center;
+            border-bottom: 1px solid #d5e0ec;
+            background: linear-gradient(180deg, #f7fbff 0%, #eef4fb 100%);
+            box-shadow: 0 6px 16px rgba(17, 38, 62, 0.08);
+        }
         .header h1 { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--primary); margin-bottom: 10px; line-height: 1.2; }
         .header p { font-size: 14px; font-weight: 500; color: var(--accent); display: flex; align-items: center; justify-content: center; gap: 8px; }
 
@@ -67,24 +74,52 @@
         .consent-box { display: flex; align-items: flex-start; gap: 12px; margin-top: 25px; font-size: 12px; color: var(--text-muted); line-height: 1.6; padding: 18px; background: #f8fafc; border-radius: 8px; border: 1px solid var(--border); }
         .consent-box input { margin-top: 3px; cursor: pointer; width: 16px; height: 16px; }
         
-        .action-btn {
-            display: flex; justify-content: center; align-items: center; gap: 10px; width: 100%; padding: 20px; margin-top: 30px;
-            background: var(--accent); color: #ffffff; border: none; border-radius: 8px;
-            font-size: 17px; font-weight: 600; cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 15px rgba(0, 90, 140, 0.2);
+        /* NEW CODEX CSS: Submit Button */
+        #submitLeadBtn {
+            display: flex; justify-content: center; align-items: center; gap: 10px; width: 100%; margin-top: 30px;
+            min-height: 54px;
+            padding: 14px 22px;
+            font-size: 1.02rem;
+            font-weight: 700;
+            letter-spacing: 0.2px;
+            border: 1px solid #23496e;
+            border-radius: 10px;
+            background: linear-gradient(180deg, #1f4e79 0%, #173e63 100%);
+            color: #ffffff;
+            box-shadow: 0 10px 24px rgba(10, 27, 46, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+            transition: transform 0.16s ease, box-shadow 0.16s ease, filter 0.16s ease;
+            cursor: pointer;
         }
-        .action-btn:hover { background: var(--accent-hover); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0, 90, 140, 0.3); }
-        .action-btn:disabled { background: #cbd5e1; cursor: not-allowed; box-shadow: none; transform: none; }
+        #submitLeadBtn:hover:enabled, #submitLeadBtn:focus-visible {
+            transform: translateY(-1px);
+            filter: brightness(1.04);
+            box-shadow: 0 14px 30px rgba(10, 27, 46, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+            outline: 3px solid #9fc8ff;
+            outline-offset: 2px;
+        }
+        #submitLeadBtn:disabled { background: #cbd5e1; cursor: not-allowed; box-shadow: none; transform: none; border-color: #cbd5e1; }
 
         .processing-state { text-align: center; padding: 50px 20px; }
         .spinner { border: 4px solid #f1f5f9; border-top: 4px solid var(--accent); border-radius: 50%; width: 60px; height: 60px; animation: spin 1s linear infinite; margin: 0 auto 30px; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         
-        .match-card { background: #ffffff; border: 2px solid var(--accent); border-radius: 8px; padding: 20px; margin-bottom: 25px; display: flex; align-items: center; gap: 20px; box-shadow: 0 10px 25px rgba(0, 90, 140, 0.1); position: relative; overflow: hidden; }
+        /* NEW CODEX CSS: Match Card */
+        .match-card {
+            padding: 14px 16px;
+            border: 1px solid #d6dee8;
+            border-left: 4px solid #1f4e79;
+            border-radius: 12px;
+            background: #ffffff;
+            font-weight: 600;
+            color: #1c3550;
+            box-shadow: 0 8px 20px rgba(15, 35, 56, 0.1);
+            margin-bottom: 25px; display: flex; align-items: center; gap: 20px; position: relative; overflow: hidden;
+        }
         .match-badge { position: absolute; top: 0; right: 0; background: var(--accent); color: white; font-size: 10px; font-weight: 700; text-transform: uppercase; padding: 4px 12px; border-radius: 0 0 0 8px; letter-spacing: 1px; }
         .advisor-photo { width: 80px; height: 80px; border-radius: 50%; background: #e2e8f0; border: 3px solid #ffffff; box-shadow: 0 4px 10px rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center; font-size: 30px; color: #cbd5e1; flex-shrink: 0; overflow: hidden; }
         .advisor-photo img { width: 100%; height: 100%; object-fit: cover; }
         .advisor-details h3 { color: var(--primary); font-size: 18px; margin-bottom: 4px; font-family: 'Playfair Display', serif; }
-        .advisor-details p { font-size: 13px; color: var(--text-muted); margin-bottom: 2px; }
+        .advisor-details p { font-size: 13px; color: var(--text-muted); margin-bottom: 2px; font-weight: 400; }
         .advisor-details .firm { font-weight: 600; color: var(--accent); }
 
         .success-banner { background: #ecfdf5; border: 1px solid #a7f3d0; padding: 15px; border-radius: 8px; margin-bottom: 25px; text-align: center; }
@@ -97,7 +132,7 @@
         .review-card { background: #ffffff; padding: 20px; border-radius: 8px; margin-bottom: 15px; border: 1px solid var(--border); box-shadow: 0 2px 10px rgba(0,0,0,0.02); position: relative; }
         .review-card::before { content: '\201C'; position: absolute; top: 10px; left: 15px; font-size: 40px; color: #f1f5f9; font-family: Georgia, serif; line-height: 1; z-index: 0; }
         .stars { color: var(--highlight); font-size: 13px; margin-bottom: 8px; position: relative; z-index: 1; }
-        .review-text { font-size: 14px; color: var(--text-main); line-height: 1.5; margin-bottom: 10px; position: relative; z-index: 1; }
+        .review-text { font-size: 14px; color: var(--text-main); line-height: 1.5; margin-bottom: 10px; position: relative; z-index: 1; font-weight: 400; }
         .review-author { font-size: 12px; font-weight: 600; color: var(--text-muted); display: flex; align-items: center; gap: 6px; }
 
         .advisor-link { display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; text-align: center; margin-top: 20px; padding: 18px; font-size: 13px; color: var(--primary); font-weight: 600; text-decoration: none; border-radius: 8px; transition: all 0.2s; border: 2px solid var(--border); background: #f8fafc; }
@@ -113,6 +148,22 @@
             .match-card { flex-direction: column; text-align: center; }
         }
     </style>
+
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'YOUR_PIXEL_ID_HERE'); // <-- ADD YOUR FIRM'S PIXEL ID HERE
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID_HERE&ev=PageView&noscript=1"
+    /></noscript>
 </head>
 <body>
 
@@ -125,88 +176,88 @@
 
         <div class="step-container active" id="step-1">
             <div class="step-indicator">Step 1 of 7</div>
-            <h2>Let's establish your timeline.</h2>
-            <p class="subtitle">What is your current age bracket? This helps us determine your upcoming transition windows.</p>
-            <button class="option-btn" onclick="selectOption('age', 'Under 64', 2)">
-                <i class="fa-regular fa-calendar"></i> Under 64 (Planning Ahead)
+            <h2>What outcome should we prioritize first in your plan?</h2>
+            <p class="subtitle">Your answer focuses your roadmap on the decision that matters most right now.</p>
+            <button class="option-btn" onclick="selectOption('goal', 'Tax Efficiency', 2)">
+                <i class="fa-solid fa-shield-halved"></i> Keeping my taxes as low as possible
             </button>
-            <button class="option-btn" onclick="selectOption('age', '64 to 65', 2)">
-                <i class="fa-regular fa-calendar-check"></i> 64 - 65 (Approaching Transition)
+            <button class="option-btn" onclick="selectOption('goal', 'Market Protection', 2)">
+                <i class="fa-solid fa-umbrella"></i> Protecting my savings from market drops
             </button>
-            <button class="option-btn" onclick="selectOption('age', 'Over 65', 2)">
-                <i class="fa-solid fa-calendar-check"></i> 65+ (Currently Enrolled)
+            <button class="option-btn" onclick="selectOption('goal', 'Income Optimization', 2)">
+                <i class="fa-solid fa-hand-holding-dollar"></i> Maximizing my monthly retirement income
             </button>
         </div>
 
         <div class="step-container" id="step-2">
             <div class="step-indicator">Step 2 of 7</div>
-            <h2>Social Security Coordination</h2>
-            <p class="subtitle">Are you planning to coordinate retirement or tax strategies with a spouse?</p>
-            <button class="option-btn" onclick="selectOption('marital', 'Married', 3)">
-                <i class="fa-solid fa-user-group"></i> Married / Filing Jointly
+            <h2>Which age range should we use to model your retirement timeline?</h2>
+            <p class="subtitle">We use this to align Social Security timing, Medicare windows, and distribution strategy.</p>
+            <button class="option-btn" onclick="selectOption('age', 'Under 64', 3)">
+                <i class="fa-regular fa-calendar"></i> Under 64 (Planning Ahead)
             </button>
-            <button class="option-btn" onclick="selectOption('marital', 'Single', 3)">
-                <i class="fa-solid fa-user"></i> Single / Widowed / Divorced
+            <button class="option-btn" onclick="selectOption('age', '64 to 65', 3)">
+                <i class="fa-regular fa-calendar-check"></i> 64 - 65 (Approaching Transition)
+            </button>
+            <button class="option-btn" onclick="selectOption('age', 'Over 65', 3)">
+                <i class="fa-solid fa-calendar-check"></i> 65+ (Currently Enrolled)
             </button>
         </div>
 
         <div class="step-container" id="step-3">
             <div class="step-indicator">Step 3 of 7</div>
-            <h2>Evaluate your portfolio.</h2>
-            <p class="subtitle">What is your estimated household investable assets? (You can leave out the value of your primary home).</p>
-            <button class="option-btn" onclick="selectOption('assets', 'Under $250k', 4)">
-                <i class="fa-solid fa-seedling"></i> Under $250,000
+            <h2>Are you currently working with a financial advisor?</h2>
+            <p class="subtitle">This helps us tailor your review as either a coordinated second opinion or a fresh planning track.</p>
+            <button class="option-btn" onclick="selectOption('advisor', 'Yes', 4)">
+                <i class="fa-solid fa-user-check"></i> Yes, I currently have an advisor
             </button>
-            <button class="option-btn" onclick="selectOption('assets', '$250k to $500k', 4)">
-                <i class="fa-solid fa-tree"></i> $250,000 - $500,000
-            </button>
-            <button class="option-btn" onclick="selectOption('assets', '$500k to $1M', 4)">
-                <i class="fa-solid fa-house-chimney"></i> $500,000 - $1,000,000
-            </button>
-            <button class="option-btn" onclick="selectOption('assets', 'Over $1M', 4)">
-                <i class="fa-solid fa-building-columns"></i> $1,000,000+
+            <button class="option-btn" onclick="selectOption('advisor', 'No', 4)">
+                <i class="fa-solid fa-user-minus"></i> No, I manage my own accounts
             </button>
         </div>
 
         <div class="step-container" id="step-4">
             <div class="step-indicator">Step 4 of 7</div>
-            <h2>Determine your tax profile.</h2>
-            <p class="subtitle">What is your estimated annual household income? This helps us check for local tax efficiencies.</p>
-            <button class="option-btn" onclick="selectOption('income', 'Under $103k', 5)">
-                <i class="fa-solid fa-chart-pie"></i> Under $103,000
+            <h2>What is your current marital status for planning purposes?</h2>
+            <p class="subtitle">Household structure affects tax filing, beneficiary strategy, and survivor income protection.</p>
+            <button class="option-btn" onclick="selectOption('marital', 'Married', 5)">
+                <i class="fa-solid fa-user-group"></i> Married / Filing Jointly
             </button>
-            <button class="option-btn" onclick="selectOption('income', '$103k to $193k', 5)">
-                <i class="fa-solid fa-chart-pie"></i> $103,000 - $193,000
-            </button>
-            <button class="option-btn" onclick="selectOption('income', 'Over $193k', 5)">
-                <i class="fa-solid fa-chart-pie"></i> Over $193,000
+            <button class="option-btn" onclick="selectOption('marital', 'Single', 5)">
+                <i class="fa-solid fa-user"></i> Single / Widowed / Divorced
             </button>
         </div>
 
         <div class="step-container" id="step-5">
             <div class="step-indicator">Step 5 of 7</div>
-            <h2>Current Management Strategy.</h2>
-            <p class="subtitle">Are you currently working with a fiduciary financial advisor?</p>
-            <button class="option-btn" onclick="selectOption('advisor', 'Yes', 6)">
-                <i class="fa-solid fa-user-check"></i> Yes, I currently have an advisor
+            <h2>What is your approximate investable asset range?</h2>
+            <p class="subtitle">A range is enough. Exact balances are not required at this stage.</p>
+            <button class="option-btn" onclick="selectOption('assets', 'Under $250k', 6)">
+                <i class="fa-solid fa-seedling"></i> Under $250,000
             </button>
-            <button class="option-btn" onclick="selectOption('advisor', 'No', 6)">
-                <i class="fa-solid fa-user-minus"></i> No, I manage my own accounts
+            <button class="option-btn" onclick="selectOption('assets', '$250k to $500k', 6)">
+                <i class="fa-solid fa-tree"></i> $250,000 - $500,000
+            </button>
+            <button class="option-btn" onclick="selectOption('assets', '$500k to $1M', 6)">
+                <i class="fa-solid fa-house-chimney"></i> $500,000 - $1,000,000
+            </button>
+            <button class="option-btn" onclick="selectOption('assets', 'Over $1M', 6)">
+                <i class="fa-solid fa-building-columns"></i> $1,000,000+
             </button>
         </div>
 
         <div class="step-container" id="step-6">
             <div class="step-indicator">Step 6 of 7</div>
-            <h2>What is most important to you?</h2>
-            <p class="subtitle">Select the goal that would give you the most peace of mind heading into 2026.</p>
-            <button class="option-btn" onclick="selectOption('goal', 'Tax Efficiency', 7)">
-                <i class="fa-solid fa-shield-halved"></i> Keeping my taxes as low as possible
+            <h2>Which annual household income range best fits?</h2>
+            <p class="subtitle">This helps us identify tax-efficiency opportunities and cash-flow durability.</p>
+            <button class="option-btn" onclick="selectOption('income', 'Under $103k', 7)">
+                <i class="fa-solid fa-chart-pie"></i> Under $103,000
             </button>
-            <button class="option-btn" onclick="selectOption('goal', 'Market Protection', 7)">
-                <i class="fa-solid fa-umbrella"></i> Protecting my savings from market drops
+            <button class="option-btn" onclick="selectOption('income', '$103k to $193k', 7)">
+                <i class="fa-solid fa-chart-pie"></i> $103,000 - $193,000
             </button>
-            <button class="option-btn" onclick="selectOption('goal', 'Income Optimization', 7)">
-                <i class="fa-solid fa-hand-holding-dollar"></i> Maximizing my monthly retirement income
+            <button class="option-btn" onclick="selectOption('income', 'Over $193k', 7)">
+                <i class="fa-solid fa-chart-pie"></i> Over $193,000
             </button>
         </div>
 
@@ -234,7 +285,7 @@
                 <label for="tcpaConsent">I agree to receive a friendly text message and phone call from my matched Bankers Life advisor regarding my roadmap. Standard data rates apply. Your information is never sold.</label>
             </div>
 
-            <button class="action-btn" id="submitLeadBtn" onclick="processData()" disabled>
+            <button id="submitLeadBtn" onclick="processData()" disabled>
                 See My Results & Matches <i class="fa-solid fa-arrow-right"></i>
             </button>
         </div>
@@ -269,8 +320,7 @@
             </div>
 
             <div style="padding-top: 10px; text-align: center;">
-                <h3 style="font-size: 17px; color: var(--primary); margin-bottom: 8px;">Claim your complimentary review.</h3>
-                <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 20px; line-height: 1.5;">William offers a free, no-pressure 15-minute introductory call to review your PDF roadmap. Select a time on his direct calendar below.</p>
+                <h3 style="font-size: 17px; color: var(--primary); margin-bottom: 15px; line-height: 1.4;">Reserve one of this week’s remaining Priority Review sessions to secure your personalized Retirement Risk & Tax-Efficiency Roadmap.</h3>
                 
                 <div class="calendly-inline-widget" data-url="https://calendly.com/your-placeholder-link/15min" style="min-width:320px;height:500px;"></div>
                 <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
@@ -312,42 +362,24 @@
     </div>
 
     <script>
-        // Data Payload Object
-        const userData = { age: '', marital: '', assets: '', income: '', advisor: '', goal: '' };
+        const userData = { goal: '', age: '', advisor: '', marital: '', assets: '', income: '' };
 
-        // MODULE 5: Lead Scoring Algorithm (From Codex)
         function calculateLeadScore(userData) {
             let points = 0;
-
             const assets = (userData?.assets || "").toLowerCase().trim();
             const advisor = (userData?.advisor || "").toLowerCase().trim();
             const goal = (userData?.goal || "").toLowerCase().trim();
 
-            // Heavy asset weighting
-            if (assets.includes("$500k to $1m") || assets.includes("500k to 1m")) {
-                points += 6;
-            } else if (assets.includes("over $1m") || assets.includes("over 1m")) {
-                points += 8;
-            }
-
-            // Positive: no current advisor
-            if (advisor === "no") {
-                points += 2;
-            }
-
-            // Positive: high-intent goals
-            if (goal === "tax efficiency") {
-                points += 2;
-            } else if (goal === "market protection") {
-                points += 2;
-            }
+            if (assets.includes("$500k to $1m") || assets.includes("500k to 1m")) { points += 6; } 
+            else if (assets.includes("over $1m") || assets.includes("over 1m")) { points += 8; }
+            if (advisor === "no") { points += 2; }
+            if (goal === "tax efficiency" || goal === "market protection") { points += 2; }
 
             if (points >= 8) return "Tier A (High Priority)";
             if (points >= 4) return "Tier B (Standard)";
             return "Tier C (Long-Term Nurture)";
         }
 
-        // MODULE 1: UTM Tracking
         function captureUtmParamsOnLoad() {
             try {
                 const params = new URLSearchParams(window.location.search || "");
@@ -359,18 +391,14 @@
             } catch (_) {}
         }
 
-        // MODULE 2: Geo-Targeting
         function applyLocalMarketHeader() {
             const fallback = '<i class="fa-solid fa-map-location-dot"></i> Triad Local Market Guide';
             try {
                 const params = new URLSearchParams(window.location.search || "");
                 const rawCity = params.get("city");
-
                 if (!rawCity) return;
-
                 const normalized = rawCity.replace(/\+/g, " ").replace(/([a-z])([A-Z])/g, "$1 $2").trim();
                 const safeCity = normalized.replace(/[^a-zA-Z\s'-]/g, "").replace(/\s+/g, " ").trim();
-
                 if (safeCity && safeCity.length <= 40) {
                     const el = document.getElementById("local-header");
                     if (el) el.innerHTML = `<i class="fa-solid fa-map-location-dot"></i> ${safeCity} Local Market Guide`;
@@ -378,23 +406,19 @@
             } catch (_) {}
         }
 
-        // Run modules on page load
         window.addEventListener("DOMContentLoaded", () => {
             captureUtmParamsOnLoad();
             applyLocalMarketHeader();
         });
 
-        // UI Navigation Logic
         function selectOption(category, value, nextStepId) {
             userData[category] = value; 
             document.querySelectorAll('.step-container').forEach(el => el.classList.remove('active'));
             document.getElementById('step-' + nextStepId).classList.add('active');
-            
             const progress = (nextStepId - 1) * 14.2; 
             document.getElementById('progressBar').style.width = progress + '%';
         }
 
-        // TCPA Consent Logic
         function toggleSubmitBtn() {
             const consent = document.getElementById('tcpaConsent').checked;
             const name = document.getElementById('leadName').value;
@@ -407,32 +431,28 @@
             document.getElementById(id).addEventListener('input', toggleSubmitBtn);
         });
 
-        // MODULE 3: Webhook Failsafe Data Processing
         async function processData() {
-            // Build the payload WITH the new Lead Scoring and UTMs
             const payload = {
                 name: document.getElementById('leadName').value,
                 email: document.getElementById('leadEmail').value,
                 phone: document.getElementById('leadPhone').value,
+                goal: userData.goal,
                 age: userData.age,
+                advisor: userData.advisor,
                 marital: userData.marital,
                 assets: userData.assets,
                 income: userData.income,
-                advisor: userData.advisor,
-                goal: userData.goal,
-                lead_tier: calculateLeadScore(userData), // The new algorithm injection
+                lead_tier: calculateLeadScore(userData),
                 timestamp: new Date().toISOString(),
                 utm_campaign: sessionStorage.getItem("utm_campaign") || "",
                 utm_source: sessionStorage.getItem("utm_source") || "",
                 utm_medium: sessionStorage.getItem("utm_medium") || ""
             };
 
-            // Trigger UI loader (Hide Step 7, Show Step 8)
             document.getElementById('step-7').classList.remove('active');
             document.getElementById('step-8').classList.add('active');
             document.getElementById('progressBar').style.width = '95%';
 
-            // Zapier Webhook Call with Timeout Failsafe
             const controller = new AbortController();
             const timeoutId = setTimeout(() => controller.abort(), 5000);
 
@@ -444,6 +464,12 @@
                     body: JSON.stringify(payload),
                     signal: controller.signal
                 });
+                
+                // Meta Pixel Trigger Event
+                if (typeof fbq === 'function') {
+                    fbq('track', 'Lead');
+                }
+                
             } catch (error) {
                 document.querySelector('.spinner').style.display = "none";
                 alert("Secure connection timeout. Please call our office directly to receive your roadmap.");
@@ -452,12 +478,10 @@
                 clearTimeout(timeoutId);
             }
 
-            // Psychological Loading Delays
             const loadingText = document.getElementById('loadingText');
             setTimeout(() => { loadingText.innerText = "Customizing strategies based on your timeline..."; }, 1000);
             setTimeout(() => { loadingText.innerText = "Finding the best local advisor match..."; }, 2500);
 
-            // Move to Success & Match Screen (Show Step 9)
             setTimeout(() => {
                 document.getElementById('step-8').classList.remove('active');
                 document.getElementById('step-9').classList.add('active');
