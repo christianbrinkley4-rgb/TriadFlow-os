@@ -145,7 +145,7 @@
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', 'YOUR_PIXEL_ID_HERE'); // <-- ADD YOUR FIRM'S PIXEL ID HERE
-    fbq('track', 'PageView');
+    // Note: ViewContent is now fired safely in the main script below to prevent ad-blocker crashes
     </script>
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID_HERE&ev=PageView&noscript=1"
@@ -343,6 +343,33 @@
     <script>
         const userData = { zip: '', city: '', goal: '', age: '', advisor: '', marital: '', assets: '', income: '' };
 
+        // --- META PIXEL TRACKING ARCHITECTURE ---
+        // Safety Wrapper (Prevents errors if user has AdBlocker)
+        function safeFbTrack(eventName, params) {
+            try {
+                if (typeof window.fbq === "function") {
+                    window.fbq("track", eventName, params || {});
+                }
+            } catch (_) {
+                // Pixel blocked: fail silently
+            }
+        }
+
+        // Calendly 'Schedule' Event Listener
+        window.addEventListener("message", function (e) {
+            if (e.origin !== "https://calendly.com") return;
+            if (e.data && e.data.event === "calendly.event_scheduled") {
+                safeFbTrack("Schedule");
+            }
+        });
+
+        // Fire ViewContent safely on load
+        window.addEventListener("DOMContentLoaded", () => {
+            safeFbTrack("ViewContent");
+            captureUtmParamsOnLoad();
+            initTriadZipStep0();
+        });
+
         function calculateLeadScore(userData) {
             let points = 0;
             const assets = (userData?.assets || "").toLowerCase().trim();
@@ -370,14 +397,14 @@
             } catch (_) {}
         }
 
-        // CODEX STEP 0 ZIP VERIFICATION LOGIC
+        // ZIP VERIFICATION LOGIC
         function initTriadZipStep0() {
             const zipInput = document.getElementById("zipCode");
             const feedback = document.getElementById("zipFeedback");
             const verified = document.getElementById("zipVerified");
             const continueBtn = document.getElementById("zipContinueBtn");
             const nextStepH1 = document.getElementById("step-1-title"); 
-            const dynamicCityMatch = document.getElementById("dynamic-city-match"); // Match card location
+            const dynamicCityMatch = document.getElementById("dynamic-city-match"); 
 
             if (!zipInput || !feedback || !verified || !continueBtn) return;
 
@@ -432,11 +459,6 @@
                 document.getElementById('progressBar').style.width = '14.2%';
             });
         }
-
-        window.addEventListener("DOMContentLoaded", () => {
-            captureUtmParamsOnLoad();
-            initTriadZipStep0();
-        });
 
         function selectOption(category, value, nextStepId) {
             userData[category] = value; 
@@ -494,6 +516,9 @@
                     body: JSON.stringify(payload),
                     signal: controller.signal
                 });
+                
+                // META PIXEL: Trigger Lead Event upon successful Zapier push
+                safeFbTrack("Lead");
                 
             } catch (error) {
                 document.querySelector('.spinner').style.display = "none";
