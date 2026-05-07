@@ -12,7 +12,7 @@
 </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>2026 Financial & Tax Transition Roadmap</title>
+  <title>Your Free 2026 Retirement Snapshot — Piedmont Triad</title>
 
   <!-- Meta Pixel -->
   <script>
@@ -51,6 +51,7 @@
       background: #fff;
       padding: 36px;
       border-radius: 10px;
+      box-sizing: border-box;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
       max-width: 640px;
       width: 100%;
@@ -70,6 +71,27 @@
       margin: 0 0 26px;
     }
 
+    .progress-shell {
+      margin: 0 0 22px;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 10px;
+      background: #d9e4ef;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      display: block;
+      width: 14%;
+      height: 100%;
+      background: #2b6cb0;
+      border-radius: inherit;
+      transition: width 0.25s ease;
+    }
+
     .form-step {
       display: none;
     }
@@ -85,7 +107,7 @@
     }
 
     .step-indicator {
-      font-size: 15px;
+      font-size: 17px;
       color: #4a5568;
       margin-bottom: 14px;
       font-weight: 700;
@@ -103,7 +125,8 @@
       font-size: 16px;
     }
 
-    label {
+    label,
+    .option-group legend {
       display: block;
       margin-bottom: 8px;
       font-weight: 700;
@@ -111,8 +134,9 @@
       color: #1f2937;
     }
 
-    input,
-    select {
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"] {
       width: 100%;
       padding: 15px;
       margin-bottom: 16px;
@@ -124,12 +148,75 @@
       color: #1f2937;
     }
 
-    input:focus-visible,
-    select:focus-visible,
+    input[type="text"]:focus-visible,
+    input[type="email"]:focus-visible,
+    input[type="tel"]:focus-visible,
+    .option-radio:focus-visible + .option-btn,
     .next-btn:focus-visible,
-    #submitLeadBtn:focus-visible {
+    #submitLeadBtn:focus-visible,
+    .early-access-btn:focus-visible {
       outline: 3px solid #90cdf4;
       outline-offset: 2px;
+    }
+
+    .option-group {
+      border: 0;
+      margin: 0 0 16px;
+      padding: 0;
+      text-align: left;
+    }
+
+    .option-group legend {
+      padding: 0;
+    }
+
+    .option-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .option-radio {
+      height: 1px;
+      opacity: 0;
+      pointer-events: none;
+      position: absolute;
+      width: 1px;
+    }
+
+    .option-btn {
+      align-items: center;
+      background: #fff;
+      border: 2px solid #cbd5e0;
+      border-radius: 6px;
+      box-sizing: border-box;
+      color: #1f2937;
+      cursor: pointer;
+      display: flex;
+      font-size: 17px;
+      font-weight: 700;
+      justify-content: center;
+      line-height: 1.3;
+      margin: 0;
+      min-height: 56px;
+      padding: 12px 14px;
+      text-align: center;
+    }
+
+    .option-radio:checked + .option-btn {
+      background: #e6f0fb;
+      border-color: #2b6cb0;
+      color: #1a365d;
+      box-shadow: inset 0 0 0 1px #2b6cb0;
+    }
+
+    .option-error {
+      color: #8a3b12;
+      font-size: 15px;
+      margin: 8px 0 0;
+      min-height: 20px;
+      text-align: left;
     }
 
     .disclaimer {
@@ -142,13 +229,33 @@
     }
 
     .contact-disclaimer {
-      font-size: 16px;
-      color: #2d3748;
+      font-size: 14px;
+      color: #4a5568;
       text-align: left;
-      margin-bottom: 14px;
-      padding: 12px;
-      background: #edf2f7;
-      border-radius: 6px;
+      margin: 12px 0 0;
+      padding: 0;
+      background: transparent;
+      border-radius: 0;
+    }
+
+    .contact-warmup {
+      color: #1a365d;
+      font-size: 18px;
+      font-weight: 700;
+      margin: 0 0 18px;
+      text-align: left;
+    }
+
+    .field-helper,
+    .zip-helper {
+      color: #4a5568;
+      font-size: 15px;
+      margin: -10px 0 16px;
+      text-align: left;
+    }
+
+    .zip-helper {
+      margin: -4px 0 12px;
     }
 
     #zipFeedback {
@@ -156,7 +263,20 @@
       margin: -2px 0 10px;
       text-align: left;
       font-size: 15px;
-      color: #b00020;
+      color: #4a5568;
+    }
+
+    #zipFeedback.is-info {
+      color: #1a365d;
+      font-weight: 700;
+    }
+
+    #zipFeedback.is-error {
+      color: #8a3b12;
+    }
+
+    #zipFeedback.is-success {
+      color: #166534;
     }
 
     #zipVerified {
@@ -165,6 +285,85 @@
       text-align: left;
       font-size: 15px;
       color: #166534;
+      font-weight: 700;
+    }
+
+    #earlyAccessBlock {
+      border: 2px solid #d6e4f0;
+      border-radius: 6px;
+      display: none;
+      margin: 12px 0 16px;
+      padding: 16px;
+      text-align: left;
+    }
+
+    #earlyAccessBlock.is-visible {
+      display: block;
+    }
+
+    #earlyAccessBlock h3 {
+      color: #1a365d;
+      font-size: 20px;
+      margin: 0 0 8px;
+    }
+
+    #earlyAccessBlock p {
+      color: #4a5568;
+      font-size: 15px;
+      margin: 0 0 12px;
+    }
+
+    .early-access-btn {
+      background: #1a365d;
+      border: 0;
+      border-radius: 6px;
+      color: #fff;
+      cursor: pointer;
+      font-size: 17px;
+      font-weight: 700;
+      min-height: 52px;
+      padding: 14px 18px;
+      width: 100%;
+    }
+
+    .early-access-btn:disabled {
+      background: #9aa9bd;
+      cursor: not-allowed;
+    }
+
+    .early-access-status {
+      font-size: 15px;
+      font-weight: 700;
+      margin: 10px 0 0;
+      min-height: 20px;
+    }
+
+    .cta-trust {
+      color: #2b6cb0;
+      font-size: 16px;
+      font-weight: 700;
+      margin: 14px 0 8px;
+      text-align: center;
+    }
+
+    .inline-form-error {
+      background: #fff8ed;
+      border: 2px solid #d97706;
+      border-radius: 6px;
+      color: #7c2d12;
+      display: none;
+      font-size: 16px;
+      margin: 14px 0 0;
+      padding: 14px 16px;
+      text-align: left;
+    }
+
+    .inline-form-error.is-visible {
+      display: block;
+    }
+
+    .inline-form-error a {
+      color: #1a365d;
       font-weight: 700;
     }
 
@@ -178,6 +377,11 @@
       font-weight: 700;
       border-radius: 6px;
       cursor: pointer;
+      align-items: center;
+      display: inline-flex;
+      gap: 10px;
+      justify-content: center;
+      min-width: 100%;
       width: 100%;
       min-height: 56px;
       transition: background 0.2s ease;
@@ -193,21 +397,132 @@
       background-color: #9aa9bd;
       cursor: not-allowed;
     }
+
+    #submitLeadBtn.is-loading::before {
+      animation: spin 0.75s linear infinite;
+      border: 3px solid rgba(255, 255, 255, 0.6);
+      border-radius: 50%;
+      border-top-color: #fff;
+      content: "";
+      height: 18px;
+      width: 18px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 440px) {
+      body {
+        padding: 12px;
+      }
+
+      .funnel-container {
+        padding: 26px 18px;
+      }
+
+      h1 {
+        font-size: 26px;
+      }
+
+      h2 {
+        font-size: 24px;
+      }
+
+      .option-grid {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="funnel-container">
-    <h1>2026 Financial & Tax Transition Roadmap</h1>
-    <p class="trust-strip">Encrypted | Never Sold | Reviewed by a Local Fiduciary</p>
+    <h1>Your Free 2026 Retirement Snapshot</h1>
+    <p class="trust-strip">Encrypted | Never Sold | Reviewed by a local, fee-only advisor.</p>
 
     <form id="triadFlowForm" action="https://hooks.zapier.com/hooks/catch/27406693/uv9ep9b/" method="POST">
+      <div class="progress-shell">
+        <div
+          class="progress-track"
+          role="progressbar"
+          aria-label="Questionnaire progress"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow="14"
+        >
+          <span class="progress-fill" id="progressFill"></span>
+        </div>
+      </div>
+
       <!-- Step 1 -->
       <div class="form-step active" id="step-0">
-        <p class="step-indicator">Step 1 of 7</p>
-        <h2>Start with your ZIP code</h2>
-        <p class="subtitle">We verify local eligibility before building your roadmap.</p>
+        <h2>Personalized Analysis for Triad Households.</h2>
+        <p class="subtitle">Takes about 90 seconds. No account numbers or exact balances needed.</p>
 
-        <label for="Zip">Enter your Triad ZIP Code:</label>
+        <fieldset class="option-group" data-required="true">
+          <legend id="Age-label">What is your current age range?</legend>
+          <div class="option-grid" role="radiogroup" aria-labelledby="Age-label">
+            <input class="option-radio" type="radio" id="Age-under-60" name="Age" value="Under 60" required />
+            <label class="option-btn" for="Age-under-60">Under 60</label>
+            <input class="option-radio" type="radio" id="Age-60-63" name="Age" value="60 to 63" required />
+            <label class="option-btn" for="Age-60-63">60 to 63</label>
+            <input class="option-radio" type="radio" id="Age-64-65" name="Age" value="64 to 65" required />
+            <label class="option-btn" for="Age-64-65">64 to 65</label>
+            <input class="option-radio" type="radio" id="Age-66-70" name="Age" value="66 to 70" required />
+            <label class="option-btn" for="Age-66-70">66 to 70</label>
+            <input class="option-radio" type="radio" id="Age-over-70" name="Age" value="Over 70" required />
+            <label class="option-btn" for="Age-over-70">Over 70</label>
+          </div>
+          <p class="option-error" role="alert"></p>
+        </fieldset>
+        <p class="cta-trust">&#128274; Secure &amp; Private</p>
+        <button type="button" class="next-btn">Continue</button>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="form-step" id="step-1">
+        <h2>Household Planning Context</h2>
+        <p class="subtitle">Used to model beneficiary and survivor planning scenarios.</p>
+
+        <fieldset class="option-group" data-required="true">
+          <legend id="Marital-label">What is your marital status?</legend>
+          <div class="option-grid" role="radiogroup" aria-labelledby="Marital-label">
+            <input class="option-radio" type="radio" id="Marital-married" name="Marital" value="Married" required />
+            <label class="option-btn" for="Marital-married">Married</label>
+            <input class="option-radio" type="radio" id="Marital-single" name="Marital" value="Single" required />
+            <label class="option-btn" for="Marital-single">Single</label>
+            <input class="option-radio" type="radio" id="Marital-widowed" name="Marital" value="Widowed" required />
+            <label class="option-btn" for="Marital-widowed">Widowed</label>
+            <input class="option-radio" type="radio" id="Marital-divorced" name="Marital" value="Divorced" required />
+            <label class="option-btn" for="Marital-divorced">Divorced</label>
+          </div>
+          <p class="option-error" role="alert"></p>
+        </fieldset>
+        <p class="cta-trust">&#128274; Secure &amp; Private</p>
+        <button type="button" class="next-btn">Continue</button>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="form-step" id="step-2">
+        <h2>Start with your ZIP code</h2>
+        <p class="subtitle">If your area is live, we will start your roadmap. If not, we will keep you posted.</p>
+
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;
+text-align:left;">
+  <img src="will.webp" alt="William Chappell, Local Fiduciary Advisor"
+    style="width:72px;height:72px;border-radius:50%;object-fit:cover;
+    border:3px solid #2b6cb0;flex-shrink:0;">
+  <div>
+    <p style="margin:0;font-size:17px;font-weight:700;color:#1a365d;">
+      Hi, I'm Will Chappell — local fiduciary advisor in the Triad.
+    </p>
+    <p style="margin:4px 0 0;font-size:15px;color:#4a5568;">
+      This 90-second questionnaire builds your free 2026 retirement snapshot.
+    </p>
+  </div>
+</div>
+
+        <label for="Zip">Your ZIP Code</label>
         <input
           type="text"
           id="Zip"
@@ -220,110 +535,110 @@
           required
         />
         <p id="zipFeedback"></p>
-        <p id="zipVerified">Local Verification Confirmed</p>
+        <p id="zipVerified">&#10003; Great &mdash; we serve your area.</p>
+        <div id="earlyAccessBlock">
+          <h3>We&rsquo;re coming to your area &mdash; drop your email for early access.</h3>
+          <p>We will notify you as soon as your ZIP code is live.</p>
+          <label for="EarlyAccessEmail">Email Address</label>
+          <input
+            type="email"
+            id="EarlyAccessEmail"
+            name="EarlyAccessEmail"
+            autocomplete="email"
+            placeholder="you@example.com"
+            disabled
+          />
+          <button type="button" class="early-access-btn" id="earlyAccessSubmit" disabled>Notify Me</button>
+          <p class="early-access-status" id="earlyAccessStatus" role="status"></p>
+        </div>
+        <p class="zip-helper" id="zipUnlockHint">Button unlocks after ZIP is entered.</p>
+        <p class="cta-trust">&#128274; Secure &amp; Private</p>
         <button type="button" class="next-btn" id="zipContinueBtn" disabled>Continue</button>
-      </div>
-
-      <!-- Step 2 -->
-      <div class="form-step" id="step-1">
-        <p class="step-indicator">Step 2 of 7</p>
-        <h2 id="step-1-title">Personalized Analysis for Triad Households.</h2>
-        <p class="subtitle">This helps align timeline planning with the right strategy.</p>
-
-        <label for="Age">What is your current age range?</label>
-        <select id="Age" name="Age" required>
-          <option value="" selected disabled>Select one</option>
-          <option value="Under 60">Under 60</option>
-          <option value="60 to 63">60 to 63</option>
-          <option value="64 to 65">64 to 65</option>
-          <option value="66 to 70">66 to 70</option>
-          <option value="Over 70">Over 70</option>
-        </select>
-        <button type="button" class="next-btn">Continue</button>
-      </div>
-
-      <!-- Step 3 -->
-      <div class="form-step" id="step-2">
-        <p class="step-indicator">Step 3 of 7</p>
-        <h2>Household Planning Context</h2>
-        <p class="subtitle">Used to model beneficiary and survivor planning scenarios.</p>
-
-        <label for="Marital">What is your marital status?</label>
-        <select id="Marital" name="Marital" required>
-          <option value="" selected disabled>Select one</option>
-          <option value="Married">Married</option>
-          <option value="Single">Single</option>
-          <option value="Widowed">Widowed</option>
-          <option value="Divorced">Divorced</option>
-        </select>
-        <button type="button" class="next-btn">Continue</button>
       </div>
 
       <!-- Step 4 -->
       <div class="form-step" id="step-3">
-        <p class="step-indicator">Step 4 of 7</p>
-        <h2>Primary Planning Priority</h2>
+        <h2 id="post-zip-title">Primary Planning Priority for Triad Households.</h2>
         <p class="subtitle">We focus your roadmap around the outcome that matters most first.</p>
 
-        <label for="Goal">What is your primary financial focus right now?</label>
-        <select id="Goal" name="Goal" required>
-          <option value="" selected disabled>Select one</option>
-          <option value="Tax Efficiency">Tax Efficiency and Avoiding Drag</option>
-          <option value="Market Protection">Market Protection and Risk Control</option>
-          <option value="Income Optimization">Income Optimization and Distribution</option>
-        </select>
+        <fieldset class="option-group" data-required="true">
+          <legend id="Goal-label">What is your primary financial focus right now?</legend>
+          <div class="option-grid" role="radiogroup" aria-labelledby="Goal-label">
+            <input class="option-radio" type="radio" id="Goal-tax" name="Goal" value="Tax Efficiency" required />
+            <label class="option-btn" for="Goal-tax">Tax Efficiency and Avoiding Drag</label>
+            <input class="option-radio" type="radio" id="Goal-market" name="Goal" value="Market Protection" required />
+            <label class="option-btn" for="Goal-market">Market Protection and Risk Control</label>
+            <input class="option-radio" type="radio" id="Goal-income" name="Goal" value="Income Optimization" required />
+            <label class="option-btn" for="Goal-income">Income Optimization and Distribution</label>
+          </div>
+          <p class="option-error" role="alert"></p>
+        </fieldset>
+        <p class="cta-trust">&#128274; Secure &amp; Private</p>
         <button type="button" class="next-btn">Continue</button>
       </div>
 
       <!-- Step 5 -->
       <div class="form-step" id="step-4">
-        <p class="step-indicator">Step 5 of 7</p>
         <h2>Current Advisory Structure</h2>
         <p class="subtitle">This helps us tailor either a second-opinion review or a new planning track.</p>
 
-        <label for="Advisor">Do you currently work with a financial advisor?</label>
-        <select id="Advisor" name="Advisor" required>
-          <option value="" selected disabled>Select one</option>
-          <option value="Yes">Yes, I currently have an advisor</option>
-          <option value="No">No, I manage it myself</option>
-        </select>
+        <fieldset class="option-group" data-required="true">
+          <legend id="Advisor-label">Do you currently work with a financial advisor?</legend>
+          <div class="option-grid" role="radiogroup" aria-labelledby="Advisor-label">
+            <input class="option-radio" type="radio" id="Advisor-yes" name="Advisor" value="Yes" required />
+            <label class="option-btn" for="Advisor-yes">Yes, I currently have an advisor</label>
+            <input class="option-radio" type="radio" id="Advisor-no" name="Advisor" value="No" required />
+            <label class="option-btn" for="Advisor-no">No, I manage it myself</label>
+          </div>
+          <p class="option-error" role="alert"></p>
+        </fieldset>
+        <p class="cta-trust">&#128274; Secure &amp; Private</p>
         <button type="button" class="next-btn">Continue</button>
       </div>
 
       <!-- Step 6 -->
       <div class="form-step" id="step-5">
-        <p class="step-indicator">Step 6 of 7</p>
         <h2>Asset Range Snapshot</h2>
         <p class="subtitle">Range only. No exact balances or account numbers required.</p>
 
-        <label for="Assets">What is the approximate value of your investable assets?</label>
-        <p class="disclaimer">No exact balances or account numbers required.</p>
-        <select id="Assets" name="Assets" required>
-          <option value="" selected disabled>Select one</option>
-          <option value="Under $250k">Under $250k</option>
-          <option value="$250k to $500k">$250k to $500k</option>
-          <option value="$500k to $1M">$500k to $1M</option>
-          <option value="Over $1M">Over $1M</option>
-        </select>
+        <fieldset class="option-group" data-required="true">
+          <legend id="Assets-label">What is the approximate value of your investable assets?</legend>
+          <p class="disclaimer">No exact balances or account numbers required.</p>
+          <div class="option-grid" role="radiogroup" aria-labelledby="Assets-label">
+            <input class="option-radio" type="radio" id="Assets-under-250" name="Assets" value="Under $250k" required />
+            <label class="option-btn" for="Assets-under-250">Under $250k</label>
+            <input class="option-radio" type="radio" id="Assets-250-500" name="Assets" value="$250k to $500k" required />
+            <label class="option-btn" for="Assets-250-500">$250k to $500k</label>
+            <input class="option-radio" type="radio" id="Assets-500-1m" name="Assets" value="$500k to $1M" required />
+            <label class="option-btn" for="Assets-500-1m">$500k to $1M</label>
+            <input class="option-radio" type="radio" id="Assets-over-1m" name="Assets" value="Over $1M" required />
+            <label class="option-btn" for="Assets-over-1m">Over $1M</label>
+          </div>
+          <p class="option-error" role="alert"></p>
+        </fieldset>
+        <p class="cta-trust">&#128274; Secure &amp; Private</p>
         <button type="button" class="next-btn">Continue</button>
       </div>
 
       <!-- Step 7 -->
       <div class="form-step" id="step-6">
-        <p class="step-indicator">Step 7 of 7</p>
         <h2>Deliver Your Personalized Roadmap</h2>
-        <p class="contact-disclaimer"><em>Your information is used only to deliver your custom PDF and coordinate a local fiduciary review. We never sell your data.</em></p>
+        <p class="contact-warmup">Almost done &mdash; where should we send your free roadmap?</p>
 
         <label for="Name">Full Name</label>
-        <input type="text" id="Name" name="Name" required />
+        <input type="text" id="Name" name="Name" autocomplete="name" required />
 
         <label for="Email">Email Address</label>
-        <input type="email" id="Email" name="Email" required />
+        <input type="email" id="Email" name="Email" autocomplete="email" required />
 
         <label for="Phone">Phone Number</label>
-        <input type="tel" id="Phone" name="Phone" required />
+        <input type="tel" id="Phone" name="Phone" autocomplete="tel" aria-describedby="PhoneHelp" required />
+        <p class="field-helper" id="PhoneHelp">Used only to confirm your review appointment.</p>
 
+        <p class="cta-trust">&#128274; Secure &amp; Private</p>
         <button type="submit" id="submitLeadBtn">Generate My Custom Roadmap</button>
+        <p class="contact-disclaimer"><em>Your information is used only to deliver your custom PDF and coordinate a local, fee-only advisor review. We never sell your data.</em></p>
+        <p id="formError" class="inline-form-error" role="alert"></p>
       </div>
     </form>
   </div>
@@ -337,16 +652,25 @@
       var nextBtns = form.querySelectorAll(".next-btn");
       var submitBtn = document.getElementById("submitLeadBtn");
       var container = document.querySelector(".funnel-container");
+      var progressFill = document.getElementById("progressFill");
+      var progressTrack = form.querySelector(".progress-track");
 
       var zipInput = document.getElementById("Zip");
       var zipFeedback = document.getElementById("zipFeedback");
       var zipVerified = document.getElementById("zipVerified");
       var zipContinueBtn = document.getElementById("zipContinueBtn");
+      var earlyAccessBlock = document.getElementById("earlyAccessBlock");
+      var earlyAccessEmail = document.getElementById("EarlyAccessEmail");
+      var earlyAccessSubmit = document.getElementById("earlyAccessSubmit");
+      var earlyAccessStatus = document.getElementById("earlyAccessStatus");
+      var formError = document.getElementById("formError");
+      var SUPPORT_PHONE_DISPLAY = "[phone number]";
+      var SUPPORT_PHONE_HREF = "";
 
       var STEP_EVENT_MAP = {
-        "step-0": "Step_1_Zip",
-        "step-1": "Step_2_Age",
-        "step-2": "Step_3_Marital",
+        "step-0": "Step_1_Age",
+        "step-1": "Step_2_Marital",
+        "step-2": "Step_3_Zip",
         "step-3": "Step_4_Goal",
         "step-4": "Step_5_Advisor",
         "step-5": "Step_6_Assets",
@@ -397,6 +721,53 @@
         trackCustom(eventName, params);
       }
 
+      function updateProgress(activeIndex) {
+        var percent = Math.round(((activeIndex + 1) / steps.length) * 100);
+        if (progressFill) progressFill.style.width = percent + "%";
+        if (progressTrack) progressTrack.setAttribute("aria-valuenow", String(percent));
+      }
+
+      function phoneCtaHtml() {
+        if (SUPPORT_PHONE_HREF) {
+          return '<a href="' + SUPPORT_PHONE_HREF + '">' + SUPPORT_PHONE_DISPLAY + '</a>';
+        }
+        return "<strong>" + SUPPORT_PHONE_DISPLAY + "</strong>";
+      }
+
+      function showInlineTroubleMessage(target) {
+        if (!target) return;
+        target.innerHTML = "Having trouble? Call us directly: " + phoneCtaHtml() + ".";
+        target.classList.add("is-visible");
+      }
+
+      function clearFormError() {
+        if (!formError) return;
+        formError.textContent = "";
+        formError.classList.remove("is-visible");
+      }
+
+      function setZipFeedback(message, tone) {
+        if (!zipFeedback) return;
+        zipFeedback.textContent = message || "";
+        zipFeedback.className = tone ? "is-" + tone : "";
+      }
+
+      function hideEarlyAccess() {
+        if (earlyAccessBlock) earlyAccessBlock.classList.remove("is-visible");
+        if (earlyAccessEmail) earlyAccessEmail.disabled = true;
+        if (earlyAccessSubmit) earlyAccessSubmit.disabled = true;
+        if (earlyAccessStatus) {
+          earlyAccessStatus.textContent = "";
+          earlyAccessStatus.classList.remove("is-visible");
+        }
+      }
+
+      function showEarlyAccess() {
+        if (earlyAccessBlock) earlyAccessBlock.classList.add("is-visible");
+        if (earlyAccessEmail) earlyAccessEmail.disabled = false;
+        if (earlyAccessSubmit) earlyAccessSubmit.disabled = false;
+      }
+
       function getTriadCity(zip) {
         var z = Number(zip);
         if (z >= 27401 && z <= 27455) return "Greensboro";
@@ -418,22 +789,25 @@
 
         if (!/^[0-9]{5}$/.test(zip)) {
           zipInput.setCustomValidity("Please enter a valid 5-digit ZIP code.");
-          if (showUi && zipFeedback) zipFeedback.textContent = "Please enter a valid 5-digit ZIP code.";
+          if (showUi) setZipFeedback("Please enter a valid 5-digit ZIP code.", "error");
           if (showUi && zipVerified) zipVerified.style.display = "none";
-          return { ok: false, city: "" };
+          if (showUi) hideEarlyAccess();
+          return { ok: false, city: "", outOfArea: false };
         }
 
         var city = getTriadCity(zip);
         if (!city) {
-          zipInput.setCustomValidity("Please enter a ZIP code in Greensboro, Winston-Salem, or High Point.");
-          if (showUi && zipFeedback) zipFeedback.textContent = "ZIP not in service area. Use Greensboro, Winston-Salem, or High Point.";
+          zipInput.setCustomValidity("");
+          if (showUi) setZipFeedback("We're expanding \u2014 enter your info and we'll notify you when your area is live.", "info");
           if (showUi && zipVerified) zipVerified.style.display = "none";
-          return { ok: false, city: "" };
+          if (showUi) showEarlyAccess();
+          return { ok: false, city: "", outOfArea: true };
         }
 
         zipInput.setCustomValidity("");
-        if (showUi && zipFeedback) zipFeedback.textContent = city + ", NC confirmed.";
+        if (showUi) setZipFeedback("", "");
         if (showUi && zipVerified) zipVerified.style.display = "block";
+        if (showUi) hideEarlyAccess();
         return { ok: true, city: city };
       }
 
@@ -441,11 +815,11 @@
         if (!zipInput || !zipContinueBtn) return;
         var zip = normalizeZip();
         zipContinueBtn.disabled = !/^[0-9]{5}$/.test(zip);
+        zipInput.setCustomValidity("");
+        hideEarlyAccess();
 
-        if (zip.length < 5) {
-          if (zipFeedback) zipFeedback.textContent = "";
-          if (zipVerified) zipVerified.style.display = "none";
-        }
+        setZipFeedback("", "");
+        if (zipVerified) zipVerified.style.display = "none";
       }
 
       if (zipInput && zipContinueBtn) {
@@ -456,8 +830,32 @@
         syncZipButton();
       }
 
+      function validateOptionGroups(currentStep) {
+        var groups = currentStep.querySelectorAll(".option-group[data-required='true']");
+        for (var i = 0; i < groups.length; i++) {
+          var group = groups[i];
+          var checked = group.querySelector(".option-radio:checked");
+          var error = group.querySelector(".option-error");
+
+          if (!checked) {
+            group.classList.add("has-error");
+            if (error) error.textContent = "Please choose one option to continue.";
+
+            var firstRadio = group.querySelector(".option-radio");
+            if (firstRadio) firstRadio.focus();
+            return false;
+          }
+
+          group.classList.remove("has-error");
+          if (error) error.textContent = "";
+        }
+        return true;
+      }
+
       function validateCurrentStep(currentStep) {
-        var fields = currentStep.querySelectorAll("input, select, textarea");
+        if (!validateOptionGroups(currentStep)) return false;
+
+        var fields = currentStep.querySelectorAll("input:not([type='radio']):not(#EarlyAccessEmail), textarea");
         for (var i = 0; i < fields.length; i++) {
           var field = fields[i];
           if (!field.checkValidity()) {
@@ -469,6 +867,17 @@
         return true;
       }
 
+      form.addEventListener("change", function (e) {
+        var target = e.target;
+        if (target && target.classList && target.classList.contains("option-radio")) {
+          var group = target.closest(".option-group");
+          var error = group ? group.querySelector(".option-error") : null;
+          if (group) group.classList.remove("has-error");
+          if (error) error.textContent = "";
+        }
+        clearFormError();
+      });
+
       for (var b = 0; b < nextBtns.length; b++) {
         nextBtns[b].addEventListener("click", function () {
           var currentStep = this.closest(".form-step");
@@ -477,9 +886,14 @@
           var currentIndex = steps.indexOf(currentStep);
           if (currentIndex < 0 || currentIndex >= steps.length - 1) return;
 
-          if (currentStep.id === "step-0") {
+          if (currentStep.id === "step-2") {
             var zipResult = validateZip(true);
             if (!zipResult.ok) {
+              if (zipResult.outOfArea) {
+                if (earlyAccessEmail) earlyAccessEmail.focus();
+                return;
+              }
+
               if (zipInput) {
                 zipInput.reportValidity();
                 zipInput.focus();
@@ -487,9 +901,9 @@
               return;
             }
 
-            var step1Title = document.getElementById("step-1-title");
-            if (step1Title) {
-              step1Title.textContent = "Personalized Analysis for " + zipResult.city + " Households.";
+            var postZipTitle = document.getElementById("post-zip-title");
+            if (postZipTitle) {
+              postZipTitle.textContent = "Primary Planning Priority for " + zipResult.city + " Households.";
             }
           }
 
@@ -500,6 +914,7 @@
 
           currentStep.classList.remove("active");
           toStep.classList.add("active");
+          updateProgress(currentIndex + 1);
 
           var eventName = STEP_EVENT_MAP[fromStepId];
           if (eventName) {
@@ -507,6 +922,50 @@
           }
         });
       }
+
+      if (earlyAccessSubmit && earlyAccessEmail) {
+        earlyAccessSubmit.addEventListener("click", function () {
+          if (!earlyAccessEmail.checkValidity()) {
+            earlyAccessEmail.reportValidity();
+            earlyAccessEmail.focus();
+            return;
+          }
+
+          earlyAccessSubmit.disabled = true;
+          earlyAccessSubmit.innerText = "Saving...";
+          if (earlyAccessStatus) {
+            earlyAccessStatus.textContent = "Saving your early access request...";
+            earlyAccessStatus.classList.remove("is-visible");
+          }
+
+          var earlyData = new FormData();
+          earlyData.append("Lead_Type", "Out of area early access");
+          earlyData.append("Zip", normalizeZip());
+          earlyData.append("Email", earlyAccessEmail.value.trim());
+          earlyData.append("Source", "TriadFlow ZIP early access");
+
+          fetch(form.action, {
+            method: "POST",
+            mode: "no-cors",
+            body: earlyData
+          })
+            .then(function () {
+              trackCustom("OutOfArea_EarlyAccess", { zip: normalizeZip() });
+              if (earlyAccessStatus) {
+                earlyAccessStatus.textContent = "You're on the list. We'll let you know when your area opens.";
+              }
+            })
+            .catch(function () {
+              if (earlyAccessStatus) showInlineTroubleMessage(earlyAccessStatus);
+              earlyAccessSubmit.disabled = false;
+            })
+            .finally(function () {
+              earlyAccessSubmit.innerText = "Notify Me";
+            });
+        });
+      }
+
+      updateProgress(0);
 
       function renderSuccess() {
         if (!container) return;
@@ -536,9 +995,11 @@
         }
 
         trackOncePerSession("Step_7_Contact", { from_step: "step-6" });
+        clearFormError();
 
         if (submitBtn) {
           submitBtn.innerText = "Generating Roadmap...";
+          submitBtn.classList.add("is-loading");
           submitBtn.disabled = true;
         }
 
@@ -559,10 +1020,11 @@
           })
           .catch(function () {
             if (submitBtn) {
-              submitBtn.innerText = "Error - Please try again";
+              submitBtn.innerText = "Generate My Custom Roadmap";
+              submitBtn.classList.remove("is-loading");
               submitBtn.disabled = false;
             }
-            alert("Secure connection timeout. Please call our office directly to receive your roadmap.");
+            showInlineTroubleMessage(formError);
           })
           .finally(function () {
             clearTimeout(timeoutId);
